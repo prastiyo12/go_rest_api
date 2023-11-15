@@ -2193,7 +2193,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "",
-	Host:             "localhost:3000",
+	Host:             "https://service.radanka.com",
 	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "API Documentation",

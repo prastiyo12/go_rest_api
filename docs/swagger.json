@@ -9,7 +9,7 @@
             "email": "prastiyo.beka12@gmail.com"
         }
     },
-    "host": "localhost:3000",
+    "host": "https://service.radanka.com",
     "paths": {
         "/api/auth/login": {
             "post": {

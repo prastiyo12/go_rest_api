@@ -483,7 +483,7 @@ definitions:
 externalDocs:
   description: OpenAPI
   url: https://swagger.io/resources/open-api/
-host: localhost:3000
+host: https://service.radanka.com
 info:
   contact:
     email: prastiyo.beka12@gmail.com
