@@ -1,5 +1,453 @@
 definitions:
-  entity.SignInInput:
+  Campaign.CampaignRequest:
+    properties:
+      campaign:
+        type: string
+      campaign_amount:
+        type: integer
+      campaign_status:
+        type: integer
+      campaign_target:
+        type: integer
+      company_id:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: string
+      profile_id:
+        type: string
+      status:
+        type: boolean
+      tps_id:
+        type: string
+    required:
+    - campaign
+    - company_id
+    - profile_id
+    type: object
+  Campaign.CampaignUpdateRequest:
+    properties:
+      campaign:
+        type: string
+      campaign_amount:
+        type: integer
+      campaign_status:
+        type: integer
+      campaign_target:
+        type: integer
+      company_id:
+        type: string
+      id:
+        type: string
+      profile_id:
+        type: string
+      status:
+        type: boolean
+      tps_id:
+        type: string
+      updated_at:
+        type: string
+      updated_by:
+        type: string
+    type: object
+  Company.CompanyRequest:
+    properties:
+      code:
+        type: integer
+      created_at:
+        type: string
+      created_by:
+        type: string
+      dapil_id:
+        type: string
+      group_id:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      path_photo:
+        type: string
+      status:
+        type: boolean
+      updated_by:
+        type: string
+    type: object
+  Company.CompanyUpdateRequest:
+    properties:
+      code:
+        type: integer
+      dapil_id:
+        type: string
+      group_id:
+        type: string
+      name:
+        type: string
+      path_photo:
+        type: string
+      status:
+        type: boolean
+      updated_at:
+        type: string
+      updated_by:
+        type: string
+    type: object
+  Dapil.DapilRequest:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Dapil.DapilUpdateRequest:
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+      status:
+        type: boolean
+      updated_at:
+        type: string
+      updated_by:
+        type: string
+    type: object
+  Issue.IssueRequest:
+    properties:
+      company_id:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: string
+      issue:
+        type: string
+      issue_maker:
+        type: string
+      issue_solution:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Issue.IssueUpdateRequest:
+    properties:
+      company_id:
+        type: string
+      issue:
+        type: string
+      issue_maker:
+        type: string
+      issue_solution:
+        type: string
+      status:
+        type: boolean
+      updated_at:
+        type: string
+      updated_by:
+        type: string
+    type: object
+  Menu.MenuRequest:
+    properties:
+      company_id:
+        type: string
+      created_at:
+        type: string
+      icon:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      parent_id:
+        type: string
+      path:
+        type: string
+      status:
+        type: boolean
+      translate:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  Menu.MenuUpdateRequest:
+    properties:
+      company_id:
+        type: string
+      created_at:
+        type: string
+      icon:
+        type: string
+      name:
+        type: string
+      parent_id:
+        type: string
+      path:
+        type: string
+      status:
+        type: boolean
+      translate:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  Pemilu.PemiluRequest:
+    properties:
+      company_id:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      id:
+        type: string
+      info1:
+        type: string
+      info2:
+        type: string
+      info3:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      path_photo:
+        type: string
+      status:
+        type: boolean
+      total_voters:
+        type: integer
+      total_voters_company:
+        type: integer
+      total_voters_group:
+        type: integer
+      total_voters_other:
+        type: integer
+      tps_id:
+        type: string
+    type: object
+  Pemilu.PemiluUpdateRequest:
+    properties:
+      company_id:
+        type: string
+      info1:
+        type: string
+      info2:
+        type: string
+      info3:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      path_photo:
+        type: string
+      status:
+        type: boolean
+      total_voters:
+        type: integer
+      total_voters_company:
+        type: integer
+      total_voters_group:
+        type: integer
+      total_voters_other:
+        type: integer
+      tps_id:
+        type: string
+      updated_at:
+        type: string
+      updated_by:
+        type: string
+    type: object
+  Profile.ProfileRequest:
+    properties:
+      address:
+        type: string
+      birth_date:
+        type: string
+      birth_place:
+        type: string
+      city_id:
+        type: string
+      company_id:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      district_id:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      identity_number:
+        type: string
+      info1:
+        type: string
+      info2:
+        type: string
+      info3:
+        type: string
+      name:
+        type: string
+      path_photo:
+        type: string
+      province_id:
+        type: string
+      rt:
+        type: string
+      rw:
+        type: string
+      status:
+        type: boolean
+      user_id:
+        type: string
+      user_type_id:
+        type: string
+      village_id:
+        type: string
+    type: object
+  Profile.ProfileUpdateRequest:
+    properties:
+      address:
+        type: string
+      birth_date:
+        type: string
+      birth_place:
+        type: string
+      city_id:
+        type: string
+      company_id:
+        type: string
+      district_id:
+        type: string
+      gender:
+        type: string
+      identity_number:
+        type: string
+      info1:
+        type: string
+      info2:
+        type: string
+      info3:
+        type: string
+      name:
+        type: string
+      path_photo:
+        type: string
+      province_id:
+        type: string
+      rt:
+        type: string
+      rw:
+        type: string
+      status:
+        type: boolean
+      updated_at:
+        type: string
+      updated_by:
+        type: string
+      user_id:
+        type: string
+      user_type_id:
+        type: string
+      village_id:
+        type: string
+    type: object
+  Tps.TpsRequest:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      dapil_id:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      rw:
+        type: string
+      status:
+        type: boolean
+      village_id:
+        type: string
+    type: object
+  Tps.TpsUpdateRequest:
+    properties:
+      code:
+        type: string
+      dapil_id:
+        type: string
+      name:
+        type: string
+      rw:
+        type: string
+      status:
+        type: boolean
+      updated_at:
+        type: string
+      updated_by:
+        type: string
+      village_id:
+        type: string
+    type: object
+  User.UserRequest:
+    properties:
+      code:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      dapil_id:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      rw:
+        type: string
+      status:
+        type: boolean
+      village_id:
+        type: string
+    type: object
+  User.UserUpdateRequest:
+    properties:
+      code:
+        type: string
+      dapil_id:
+        type: string
+      name:
+        type: string
+      rw:
+        type: string
+      status:
+        type: boolean
+      updated_at:
+        type: string
+      updated_by:
+        type: string
+      village_id:
+        type: string
+    type: object
+  core.SignInInput:
     properties:
       email:
         type: string
@@ -9,7 +457,7 @@ definitions:
     - email
     - password
     type: object
-  entity.SignUpInput:
+  core.SignUpInput:
     properties:
       email:
         type: string
@@ -21,6 +469,8 @@ definitions:
       passwordConfirm:
         minLength: 8
         type: string
+      phone:
+        type: string
       photo:
         type: string
     required:
@@ -28,6 +478,7 @@ definitions:
     - name
     - password
     - passwordConfirm
+    - phone
     type: object
 externalDocs:
   description: OpenAPI
@@ -37,7 +488,7 @@ info:
   contact:
     email: prastiyo.beka12@gmail.com
     name: API Support
-  description: This is a NASH API DOCUMENTATION
+  description: API DOCUMENTATION
   termsOfService: http://swagger.io/terms/
   title: API Documentation
 paths:
@@ -52,7 +503,7 @@ paths:
         name: login
         required: true
         schema:
-          $ref: '#/definitions/entity.SignInInput'
+          $ref: '#/definitions/core.SignInInput'
       produces:
       - application/json
       responses: {}
@@ -70,13 +521,413 @@ paths:
         name: sign-up
         required: true
         schema:
-          $ref: '#/definitions/entity.SignUpInput'
+          $ref: '#/definitions/core.SignUpInput'
       produces:
       - application/json
       responses: {}
       summary: Sign Up User
       tags:
       - Auth System
+  /api/v1/campaign:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Campaign
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Campaign
+      tags:
+      - Campaign
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Campaign
+      parameters:
+      - description: Campaign Create
+        in: body
+        name: campaign
+        required: true
+        schema:
+          $ref: '#/definitions/Campaign.CampaignRequest'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Campaign Create
+      tags:
+      - Campaign
+  /api/v1/campaign/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Campaign By ID
+      parameters:
+      - description: Campaign ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Campaign By ID
+      tags:
+      - Campaign
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Campaign
+      parameters:
+      - description: Campaign Update
+        in: body
+        name: campaign
+        required: true
+        schema:
+          $ref: '#/definitions/Campaign.CampaignUpdateRequest'
+      - description: Campaign ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Campaign Update
+      tags:
+      - Campaign
+  /api/v1/campaign/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Campaign
+      parameters:
+      - description: Campaign Update
+        in: body
+        name: campaign
+        required: true
+        schema:
+          $ref: '#/definitions/Campaign.CampaignUpdateRequest'
+      - description: Campaign ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Campaign Delete
+      tags:
+      - Campaign
+  /api/v1/company:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Tps
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Tps
+      tags:
+      - Tps
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Company
+      parameters:
+      - description: Company Create
+        in: body
+        name: company
+        required: true
+        schema:
+          $ref: '#/definitions/Company.CompanyRequest'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Company Create
+      tags:
+      - Company
+  /api/v1/company/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Company By ID
+      parameters:
+      - description: Company ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Company By ID
+      tags:
+      - Company
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Company
+      parameters:
+      - description: Company Update
+        in: body
+        name: company
+        required: true
+        schema:
+          $ref: '#/definitions/Company.CompanyUpdateRequest'
+      - description: Company ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Company Update
+      tags:
+      - Company
+  /api/v1/company/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Company
+      parameters:
+      - description: Company Update
+        in: body
+        name: company
+        required: true
+        schema:
+          $ref: '#/definitions/Company.CompanyUpdateRequest'
+      - description: Company ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Company Delete
+      tags:
+      - Company
+  /api/v1/dapil:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Dapil
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Dapil
+      tags:
+      - Dapil
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Dapil
+      parameters:
+      - description: Dapil Create
+        in: body
+        name: dapil
+        required: true
+        schema:
+          $ref: '#/definitions/Dapil.DapilRequest'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Dapil Create
+      tags:
+      - Dapil
+  /api/v1/dapil/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Dapil By ID
+      parameters:
+      - description: Dapil ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Dapil By ID
+      tags:
+      - Dapil
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Dapil
+      parameters:
+      - description: Dapil Update
+        in: body
+        name: dapil
+        required: true
+        schema:
+          $ref: '#/definitions/Dapil.DapilUpdateRequest'
+      - description: Dapil ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Dapil Update
+      tags:
+      - Dapil
+  /api/v1/dapil/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Dapil
+      parameters:
+      - description: Dapil Update
+        in: body
+        name: dapil
+        required: true
+        schema:
+          $ref: '#/definitions/Dapil.DapilUpdateRequest'
+      - description: Dapil ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Dapil Delete
+      tags:
+      - Dapil
+  /api/v1/issue:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Issue
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Issue
+      tags:
+      - Issue
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Issue
+      parameters:
+      - description: Issue Create
+        in: body
+        name: issue
+        required: true
+        schema:
+          $ref: '#/definitions/Issue.IssueRequest'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Issue Create
+      tags:
+      - Issue
+  /api/v1/issue/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Issue By ID
+      parameters:
+      - description: Issue ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Issue By ID
+      tags:
+      - Issue
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Issue
+      parameters:
+      - description: Issue Update
+        in: body
+        name: issue
+        required: true
+        schema:
+          $ref: '#/definitions/Issue.IssueUpdateRequest'
+      - description: Issue ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Issue Update
+      tags:
+      - Issue
+  /api/v1/issue/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Issue
+      parameters:
+      - description: Issue Update
+        in: body
+        name: issue
+        required: true
+        schema:
+          $ref: '#/definitions/Issue.IssueUpdateRequest'
+      - description: Issue ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Issue Delete
+      tags:
+      - Issue
   /api/v1/logout:
     post:
       consumes:
@@ -98,9 +949,461 @@ paths:
       responses: {}
       security:
       - ApiKeyAuth: []
-      summary: Get Profile
+      summary: Get User
       tags:
       - User Credential
+  /api/v1/menu:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Menu
+      parameters:
+      - description: Menu Create
+        in: body
+        name: menu
+        required: true
+        schema:
+          $ref: '#/definitions/Menu.MenuRequest'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Menu Create
+      tags:
+      - Menu
+  /api/v1/menu/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Menu By ID
+      parameters:
+      - description: Menu ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Menu By ID
+      tags:
+      - Menu
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Menu
+      parameters:
+      - description: Menu Update
+        in: body
+        name: menu
+        required: true
+        schema:
+          $ref: '#/definitions/Menu.MenuUpdateRequest'
+      - description: Menu ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Menu Update
+      tags:
+      - Menu
+  /api/v1/menu/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Menu
+      parameters:
+      - description: Menu Update
+        in: body
+        name: menu
+        required: true
+        schema:
+          $ref: '#/definitions/Menu.MenuUpdateRequest'
+      - description: Menu ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Menu Delete
+      tags:
+      - Menu
+  /api/v1/pemilu:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Pemilu
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Pemilu
+      tags:
+      - Pemilu
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Pemilu
+      parameters:
+      - description: Pemilu Create
+        in: body
+        name: pemilu
+        required: true
+        schema:
+          $ref: '#/definitions/Pemilu.PemiluRequest'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Pemilu Create
+      tags:
+      - Pemilu
+  /api/v1/pemilu/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Pemilu By ID
+      parameters:
+      - description: Pemilu ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Pemilu By ID
+      tags:
+      - Pemilu
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Pemilu
+      parameters:
+      - description: Pemilu Update
+        in: body
+        name: pemilu
+        required: true
+        schema:
+          $ref: '#/definitions/Pemilu.PemiluUpdateRequest'
+      - description: Pemilu ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Pemilu Update
+      tags:
+      - Pemilu
+  /api/v1/pemilu/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Pemilu
+      parameters:
+      - description: Pemilu Update
+        in: body
+        name: pemilu
+        required: true
+        schema:
+          $ref: '#/definitions/Pemilu.PemiluUpdateRequest'
+      - description: Pemilu ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Pemilu Delete
+      tags:
+      - Pemilu
+  /api/v1/profile:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Profile
+      parameters:
+      - description: Profile Create
+        in: body
+        name: profile
+        required: true
+        schema:
+          $ref: '#/definitions/Profile.ProfileRequest'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Profile Create
+      tags:
+      - Profile
+  /api/v1/profile/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Profile By ID
+      parameters:
+      - description: Profile ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Profile By ID
+      tags:
+      - Profile
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Profile
+      parameters:
+      - description: Profile Update
+        in: body
+        name: profile
+        required: true
+        schema:
+          $ref: '#/definitions/Profile.ProfileUpdateRequest'
+      - description: Profile ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Profile Update
+      tags:
+      - Profile
+  /api/v1/profile/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Profile
+      parameters:
+      - description: Profile Update
+        in: body
+        name: profile
+        required: true
+        schema:
+          $ref: '#/definitions/Profile.ProfileUpdateRequest'
+      - description: Profile ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Profile Delete
+      tags:
+      - Profile
+  /api/v1/tps:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Tps
+      parameters:
+      - description: Tps Create
+        in: body
+        name: tps
+        required: true
+        schema:
+          $ref: '#/definitions/Tps.TpsRequest'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Tps Create
+      tags:
+      - Tps
+  /api/v1/tps/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Tps By ID
+      parameters:
+      - description: Tps ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Tps By ID
+      tags:
+      - Tps
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Tps
+      parameters:
+      - description: Tps Update
+        in: body
+        name: tps
+        required: true
+        schema:
+          $ref: '#/definitions/Tps.TpsUpdateRequest'
+      - description: Tps ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Tps Update
+      tags:
+      - Tps
+  /api/v1/tps/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Tps
+      parameters:
+      - description: Tps Update
+        in: body
+        name: tps
+        required: true
+        schema:
+          $ref: '#/definitions/Tps.TpsUpdateRequest'
+      - description: Tps ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Tps Delete
+      tags:
+      - Tps
+  /api/v1/user:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data User
+      parameters:
+      - description: User Create
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/User.UserRequest'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: User Create
+      tags:
+      - User
+  /api/v1/user/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data User By ID
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: User By ID
+      tags:
+      - User
+    post:
+      consumes:
+      - application/json
+      description: Simpan data User
+      parameters:
+      - description: User Update
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/User.UserUpdateRequest'
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: User Update
+      tags:
+      - User
+  /api/v1/user/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data User
+      parameters:
+      - description: User Update
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/User.UserUpdateRequest'
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: User Delete
+      tags:
+      - User
 securityDefinitions:
   ApiKeyAuth:
     in: header

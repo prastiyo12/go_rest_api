@@ -6,7 +6,7 @@ import (
 
 	"go_rest_api/config"
 	"go_rest_api/database"
-	"go_rest_api/models/entity"
+	"go_rest_api/models/core"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt"
@@ -43,15 +43,15 @@ func DeserializeUser(c *fiber.Ctx) error {
 
 	}
 
-	db := database.DB.Db
-	var user entity.User
+	db := database.DB
+	var user core.User
 	db.First(&user, "id = ?", fmt.Sprint(claims["sub"]))
 
 	if user.ID.String() != claims["sub"] {
 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"status": "fail", "message": "the user belonging to this token no logger exists"})
 	}
 
-	c.Locals("user", entity.FilterUserRecord(&user))
+	c.Locals("user", core.FilterUserRecord(&user))
 
 	return c.Next()
 }

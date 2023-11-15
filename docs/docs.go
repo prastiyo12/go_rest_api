@@ -39,7 +39,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/entity.SignInInput"
+                            "$ref": "#/definitions/core.SignInInput"
                         }
                     }
                 ],
@@ -66,8 +66,636 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/entity.SignUpInput"
+                            "$ref": "#/definitions/core.SignUpInput"
                         }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/campaign": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Campaign",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Campaign"
+                ],
+                "summary": "Campaign",
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Campaign",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Campaign"
+                ],
+                "summary": "Campaign Create",
+                "parameters": [
+                    {
+                        "description": "Campaign Create",
+                        "name": "campaign",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Campaign.CampaignRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/campaign/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Campaign",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Campaign"
+                ],
+                "summary": "Campaign Delete",
+                "parameters": [
+                    {
+                        "description": "Campaign Update",
+                        "name": "campaign",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Campaign.CampaignUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Campaign ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/campaign/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Campaign By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Campaign"
+                ],
+                "summary": "Campaign By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Campaign ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Campaign",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Campaign"
+                ],
+                "summary": "Campaign Update",
+                "parameters": [
+                    {
+                        "description": "Campaign Update",
+                        "name": "campaign",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Campaign.CampaignUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Campaign ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/company": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Tps",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tps"
+                ],
+                "summary": "Tps",
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Company",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Company Create",
+                "parameters": [
+                    {
+                        "description": "Company Create",
+                        "name": "company",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Company.CompanyRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/company/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Company",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Company Delete",
+                "parameters": [
+                    {
+                        "description": "Company Update",
+                        "name": "company",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Company.CompanyUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Company ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/company/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Company By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Company By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Company ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Company",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Company Update",
+                "parameters": [
+                    {
+                        "description": "Company Update",
+                        "name": "company",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Company.CompanyUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Company ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/dapil": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Dapil",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dapil"
+                ],
+                "summary": "Dapil",
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Dapil",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dapil"
+                ],
+                "summary": "Dapil Create",
+                "parameters": [
+                    {
+                        "description": "Dapil Create",
+                        "name": "dapil",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Dapil.DapilRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/dapil/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Dapil",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dapil"
+                ],
+                "summary": "Dapil Delete",
+                "parameters": [
+                    {
+                        "description": "Dapil Update",
+                        "name": "dapil",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Dapil.DapilUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Dapil ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/dapil/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Dapil By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dapil"
+                ],
+                "summary": "Dapil By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Dapil ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Dapil",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dapil"
+                ],
+                "summary": "Dapil Update",
+                "parameters": [
+                    {
+                        "description": "Dapil Update",
+                        "name": "dapil",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Dapil.DapilUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Dapil ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/issue": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Issue",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Issue"
+                ],
+                "summary": "Issue",
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Issue",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Issue"
+                ],
+                "summary": "Issue Create",
+                "parameters": [
+                    {
+                        "description": "Issue Create",
+                        "name": "issue",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Issue.IssueRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/issue/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Issue",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Issue"
+                ],
+                "summary": "Issue Delete",
+                "parameters": [
+                    {
+                        "description": "Issue Update",
+                        "name": "issue",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Issue.IssueUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Issue ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/issue/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Issue By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Issue"
+                ],
+                "summary": "Issue By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Issue ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Issue",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Issue"
+                ],
+                "summary": "Issue Update",
+                "parameters": [
+                    {
+                        "description": "Issue Update",
+                        "name": "issue",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Issue.IssueUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Issue ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {}
@@ -106,13 +734,1402 @@ const docTemplate = `{
                 "tags": [
                     "User Credential"
                 ],
-                "summary": "Get Profile",
+                "summary": "Get User",
+                "responses": {}
+            }
+        },
+        "/api/v1/menu": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Menu Create",
+                "parameters": [
+                    {
+                        "description": "Menu Create",
+                        "name": "menu",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Menu.MenuRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/menu/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Menu Delete",
+                "parameters": [
+                    {
+                        "description": "Menu Update",
+                        "name": "menu",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Menu.MenuUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Menu ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/menu/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Menu By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Menu By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Menu ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Menu Update",
+                "parameters": [
+                    {
+                        "description": "Menu Update",
+                        "name": "menu",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Menu.MenuUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Menu ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/pemilu": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Pemilu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pemilu"
+                ],
+                "summary": "Pemilu",
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Pemilu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pemilu"
+                ],
+                "summary": "Pemilu Create",
+                "parameters": [
+                    {
+                        "description": "Pemilu Create",
+                        "name": "pemilu",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Pemilu.PemiluRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/pemilu/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Pemilu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pemilu"
+                ],
+                "summary": "Pemilu Delete",
+                "parameters": [
+                    {
+                        "description": "Pemilu Update",
+                        "name": "pemilu",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Pemilu.PemiluUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Pemilu ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/pemilu/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Pemilu By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pemilu"
+                ],
+                "summary": "Pemilu By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Pemilu ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Pemilu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pemilu"
+                ],
+                "summary": "Pemilu Update",
+                "parameters": [
+                    {
+                        "description": "Pemilu Update",
+                        "name": "pemilu",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Pemilu.PemiluUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Pemilu ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/profile": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Profile",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Profile Create",
+                "parameters": [
+                    {
+                        "description": "Profile Create",
+                        "name": "profile",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Profile.ProfileRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/profile/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Profile",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Profile Delete",
+                "parameters": [
+                    {
+                        "description": "Profile Update",
+                        "name": "profile",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Profile.ProfileUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Profile ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/profile/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Profile By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Profile By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Profile ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Profile",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Profile Update",
+                "parameters": [
+                    {
+                        "description": "Profile Update",
+                        "name": "profile",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Profile.ProfileUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Profile ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/tps": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Tps",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tps"
+                ],
+                "summary": "Tps Create",
+                "parameters": [
+                    {
+                        "description": "Tps Create",
+                        "name": "tps",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Tps.TpsRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/tps/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Tps",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tps"
+                ],
+                "summary": "Tps Delete",
+                "parameters": [
+                    {
+                        "description": "Tps Update",
+                        "name": "tps",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Tps.TpsUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Tps ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/tps/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Tps By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tps"
+                ],
+                "summary": "Tps By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Tps ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Tps",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tps"
+                ],
+                "summary": "Tps Update",
+                "parameters": [
+                    {
+                        "description": "Tps Update",
+                        "name": "tps",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Tps.TpsUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Tps ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/user": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data User",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "User Create",
+                "parameters": [
+                    {
+                        "description": "User Create",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User.UserRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/user/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data User",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "User Delete",
+                "parameters": [
+                    {
+                        "description": "User Update",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User.UserUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/user/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data User By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "User By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data User",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "User Update",
+                "parameters": [
+                    {
+                        "description": "User Update",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User.UserUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {}
             }
         }
     },
     "definitions": {
-        "entity.SignInInput": {
+        "Campaign.CampaignRequest": {
+            "type": "object",
+            "required": [
+                "campaign",
+                "company_id",
+                "profile_id"
+            ],
+            "properties": {
+                "campaign": {
+                    "type": "string"
+                },
+                "campaign_amount": {
+                    "type": "integer"
+                },
+                "campaign_status": {
+                    "type": "integer"
+                },
+                "campaign_target": {
+                    "type": "integer"
+                },
+                "company_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "profile_id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "tps_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "Campaign.CampaignUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "campaign": {
+                    "type": "string"
+                },
+                "campaign_amount": {
+                    "type": "integer"
+                },
+                "campaign_status": {
+                    "type": "integer"
+                },
+                "campaign_target": {
+                    "type": "integer"
+                },
+                "company_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "profile_id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "tps_id": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                }
+            }
+        },
+        "Company.CompanyRequest": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "dapil_id": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path_photo": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "updated_by": {
+                    "type": "string"
+                }
+            }
+        },
+        "Company.CompanyUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "dapil_id": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path_photo": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                }
+            }
+        },
+        "Dapil.DapilRequest": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Dapil.DapilUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                }
+            }
+        },
+        "Issue.IssueRequest": {
+            "type": "object",
+            "properties": {
+                "company_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "issue": {
+                    "type": "string"
+                },
+                "issue_maker": {
+                    "type": "string"
+                },
+                "issue_solution": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Issue.IssueUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "company_id": {
+                    "type": "string"
+                },
+                "issue": {
+                    "type": "string"
+                },
+                "issue_maker": {
+                    "type": "string"
+                },
+                "issue_solution": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                }
+            }
+        },
+        "Menu.MenuRequest": {
+            "type": "object",
+            "properties": {
+                "company_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "translate": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "Menu.MenuUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "company_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "translate": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "Pemilu.PemiluRequest": {
+            "type": "object",
+            "properties": {
+                "company_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "info1": {
+                    "type": "string"
+                },
+                "info2": {
+                    "type": "string"
+                },
+                "info3": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                },
+                "path_photo": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "total_voters": {
+                    "type": "integer"
+                },
+                "total_voters_company": {
+                    "type": "integer"
+                },
+                "total_voters_group": {
+                    "type": "integer"
+                },
+                "total_voters_other": {
+                    "type": "integer"
+                },
+                "tps_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "Pemilu.PemiluUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "company_id": {
+                    "type": "string"
+                },
+                "info1": {
+                    "type": "string"
+                },
+                "info2": {
+                    "type": "string"
+                },
+                "info3": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                },
+                "path_photo": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "total_voters": {
+                    "type": "integer"
+                },
+                "total_voters_company": {
+                    "type": "integer"
+                },
+                "total_voters_group": {
+                    "type": "integer"
+                },
+                "total_voters_other": {
+                    "type": "integer"
+                },
+                "tps_id": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                }
+            }
+        },
+        "Profile.ProfileRequest": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "birth_date": {
+                    "type": "string"
+                },
+                "birth_place": {
+                    "type": "string"
+                },
+                "city_id": {
+                    "type": "string"
+                },
+                "company_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "district_id": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "identity_number": {
+                    "type": "string"
+                },
+                "info1": {
+                    "type": "string"
+                },
+                "info2": {
+                    "type": "string"
+                },
+                "info3": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path_photo": {
+                    "type": "string"
+                },
+                "province_id": {
+                    "type": "string"
+                },
+                "rt": {
+                    "type": "string"
+                },
+                "rw": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "user_id": {
+                    "type": "string"
+                },
+                "user_type_id": {
+                    "type": "string"
+                },
+                "village_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "Profile.ProfileUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "birth_date": {
+                    "type": "string"
+                },
+                "birth_place": {
+                    "type": "string"
+                },
+                "city_id": {
+                    "type": "string"
+                },
+                "company_id": {
+                    "type": "string"
+                },
+                "district_id": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "identity_number": {
+                    "type": "string"
+                },
+                "info1": {
+                    "type": "string"
+                },
+                "info2": {
+                    "type": "string"
+                },
+                "info3": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path_photo": {
+                    "type": "string"
+                },
+                "province_id": {
+                    "type": "string"
+                },
+                "rt": {
+                    "type": "string"
+                },
+                "rw": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                },
+                "user_type_id": {
+                    "type": "string"
+                },
+                "village_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "Tps.TpsRequest": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "dapil_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rw": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "village_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "Tps.TpsUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "dapil_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rw": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                },
+                "village_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "User.UserRequest": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "dapil_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rw": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "village_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "User.UserUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "dapil_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rw": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                },
+                "village_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "core.SignInInput": {
             "type": "object",
             "required": [
                 "email",
@@ -127,13 +2144,14 @@ const docTemplate = `{
                 }
             }
         },
-        "entity.SignUpInput": {
+        "core.SignUpInput": {
             "type": "object",
             "required": [
                 "email",
                 "name",
                 "password",
-                "passwordConfirm"
+                "passwordConfirm",
+                "phone"
             ],
             "properties": {
                 "email": {
@@ -149,6 +2167,9 @@ const docTemplate = `{
                 "passwordConfirm": {
                     "type": "string",
                     "minLength": 8
+                },
+                "phone": {
+                    "type": "string"
                 },
                 "photo": {
                     "type": "string"
@@ -176,7 +2197,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "API Documentation",
-	Description:      "This is a NASH API DOCUMENTATION",
+	Description:      "API DOCUMENTATION",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

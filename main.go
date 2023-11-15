@@ -12,7 +12,7 @@ import (
 )
 
 //	@title			API Documentation
-//	@description	This is a NASH API DOCUMENTATION
+//	@description	API DOCUMENTATION
 //	@termsOfService	http://swagger.io/terms/
 //	@contact.name	API Support
 //	@contact.email	prastiyo.beka12@gmail.com

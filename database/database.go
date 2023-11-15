@@ -7,19 +7,14 @@ import (
 	"strconv"
 
 	"go_rest_api/config"
-	"go_rest_api/models/entity"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
 
-// Database instance
-type Dbinstance struct {
-	Db *gorm.DB
-}
-
-var DB Dbinstance
+// var DB Dbinstance
+var DB *gorm.DB
 
 // Connect function
 func Connect() {
@@ -40,24 +35,6 @@ func Connect() {
 	log.Println("Connected")
 	db.Logger = logger.Default.LogMode(logger.Info)
 	log.Println("running migrations")
-	db.AutoMigrate(
-		&entity.User{},
-		&entity.UserRole{},
-		&entity.UserType{},
-		&entity.SettingData{},
-		&entity.Profile{},
-		&entity.Company{},
-		&entity.CompanyGroup{},
-		&entity.Notification{},
-		&entity.Campaign{},
-		&entity.DapilArea{},
-		&entity.Dapil{},
-		&entity.Issue{},
-		&entity.Pemilih{},
-		&entity.Tps{},
-		&entity.Pemilu{},
-	)
-	DB = Dbinstance{
-		Db: db,
-	}
+	// db.AutoMigrate()
+	DB = db
 }
