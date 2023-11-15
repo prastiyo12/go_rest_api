@@ -34,7 +34,7 @@ func Connect() {
 	}
 	log.Println("Connected")
 	db.Logger = logger.Default.LogMode(logger.Info)
-	log.Println("running migrations")
+	// log.Println("running migrations")
 	// db.AutoMigrate()
 	DB = db
 }

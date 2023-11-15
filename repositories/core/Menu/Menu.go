@@ -92,3 +92,20 @@ func (u *MenuUpdateRequest) UpdateStatus(id string) (*MenuUpdateRequest, error) 
 	}
 	return u, nil
 }
+
+func GetAllMenu(c *fiber.Ctx) (u []*core.Menu, error error) {
+	keyword := c.Query("q")
+
+	qState := "SELECT  FROM menus "
+	if keyword != "" {
+		qState = qState + "WHERE LOWER(name) LIKE '%" + strings.ToLower(keyword) + "%'"
+	}
+	qState = qState + " ORDER BY created_at DESC"
+
+	err := database.DB.Raw(qState).Scan(&u).Error
+	if err != nil {
+		return u, err
+	}
+
+	return u, nil
+}
