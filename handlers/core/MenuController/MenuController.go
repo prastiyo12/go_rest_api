@@ -190,3 +190,8 @@ func Delete(c *fiber.Ctx) error {
 	}
 	return err
 }
+
+func GetMenu(c *fiber.Ctx) error {
+	var err error
+	return err
+}
