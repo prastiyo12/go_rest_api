@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"go_rest_api/config"
+	"go_rest_api/models/vote"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -35,6 +36,6 @@ func Connect() {
 	log.Println("Connected")
 	db.Logger = logger.Default.LogMode(logger.Info)
 	// log.Println("running migrations")
-	// db.AutoMigrate()
+	db.AutoMigrate(&vote.Tps{})
 	DB = db
 }

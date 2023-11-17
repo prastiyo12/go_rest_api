@@ -1,6 +1,7 @@
 package MenuController
 
 import (
+	"go_rest_api/models/core"
 	"go_rest_api/repositories/core/Menu"
 	"time"
 
@@ -17,7 +18,7 @@ import (
 //
 // @Security		ApiKeyAuth
 //
-// @Router			/api/v1/pemilu [get]
+// @Router			/api/v1/all-menu [get]
 func GetAll(c *fiber.Ctx) error {
 	data, err := Menu.GetAll(c)
 
@@ -191,7 +192,30 @@ func Delete(c *fiber.Ctx) error {
 	return err
 }
 
+// @Summary		Menu
+// @Description	Ambil data Menu
+// @Tags			Menu
+// @Accept			json
+// @Produce		json
+//
+// @Security		ApiKeyAuth
+//
+// @Router			/api/v1/menu [get]
 func GetMenu(c *fiber.Ctx) error {
-	var err error
+	user := c.Locals("user").(core.UserResponse)
+	data, err := Menu.GetAllMenu(c, user.CompanyId.String(), user.Role.String())
+
+	if err != nil {
+		err := c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"code": fiber.StatusBadRequest, "message": err.Error()})
+		if err != nil {
+			return err
+		}
+		return err
+	}
+
+	err = c.Status(fiber.StatusOK).JSON(fiber.Map{"code": fiber.StatusOK, "message": "success", "data": data})
+	if err != nil {
+		return err
+	}
 	return err
 }

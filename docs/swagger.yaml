@@ -95,15 +95,16 @@ definitions:
       updated_by:
         type: string
     type: object
-  Dapil.DapilRequest:
+  Dapil.DapilInput:
     properties:
       code:
         type: string
-      created_at:
+      name:
         type: string
-      created_by:
-        type: string
-      id:
+    type: object
+  Dapil.DapilInputUpdate:
+    properties:
+      code:
         type: string
       name:
         type: string
@@ -367,6 +368,31 @@ definitions:
       village_id:
         type: string
     type: object
+  Role.RoleInput:
+    properties:
+      company_id:
+        type: string
+      name:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Role.RoleInputUpdate:
+    properties:
+      name:
+        type: string
+      status:
+        type: boolean
+    type: object
+  Role.RoleUpdateRequest:
+    properties:
+      name:
+        type: string
+      status:
+        type: boolean
+      updated_at:
+        type: string
+    type: object
   Tps.TpsRequest:
     properties:
       code:
@@ -374,6 +400,8 @@ definitions:
       created_at:
         type: string
       created_by:
+        type: string
+      dapil_area_id:
         type: string
       dapil_id:
         type: string
@@ -385,12 +413,12 @@ definitions:
         type: string
       status:
         type: boolean
-      village_id:
-        type: string
     type: object
   Tps.TpsUpdateRequest:
     properties:
       code:
+        type: string
+      dapil_area_id:
         type: string
       dapil_id:
         type: string
@@ -403,8 +431,6 @@ definitions:
       updated_at:
         type: string
       updated_by:
-        type: string
-      village_id:
         type: string
     type: object
   User.UserRequest:
@@ -483,7 +509,7 @@ definitions:
 externalDocs:
   description: OpenAPI
   url: https://swagger.io/resources/open-api/
-host: service.radanka.com
+host: localhost:3000
 info:
   contact:
     email: prastiyo.beka12@gmail.com
@@ -528,6 +554,19 @@ paths:
       summary: Sign Up User
       tags:
       - Auth System
+  /api/v1/all-menu:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Menu
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Menu
+      tags:
+      - Menu
   /api/v1/campaign:
     get:
       consumes:
@@ -632,15 +671,20 @@ paths:
     get:
       consumes:
       - application/json
-      description: Ambil data Tps
+      description: Ambil data Company
+      parameters:
+      - description: name search
+        in: query
+        name: search
+        type: string
       produces:
       - application/json
       responses: {}
       security:
       - ApiKeyAuth: []
-      summary: Tps
+      summary: Company
       tags:
-      - Tps
+      - Company
     post:
       consumes:
       - application/json
@@ -733,6 +777,35 @@ paths:
       consumes:
       - application/json
       description: Ambil data Dapil
+      parameters:
+      - description: Page
+        in: query
+        name: page
+        required: true
+        type: string
+      - description: Rows
+        in: query
+        name: rows
+        required: true
+        type: string
+      - description: Dir
+        in: query
+        name: dir
+        required: true
+        type: string
+      - description: Sort
+        in: query
+        name: sort
+        required: true
+        type: string
+      - description: Code
+        in: query
+        name: code
+        type: string
+      - description: Name
+        in: query
+        name: name
+        type: string
       produces:
       - application/json
       responses: {}
@@ -751,7 +824,7 @@ paths:
         name: dapil
         required: true
         schema:
-          $ref: '#/definitions/Dapil.DapilRequest'
+          $ref: '#/definitions/Dapil.DapilInput'
       produces:
       - application/json
       responses: {}
@@ -789,12 +862,12 @@ paths:
         name: dapil
         required: true
         schema:
-          $ref: '#/definitions/Dapil.DapilUpdateRequest'
+          $ref: '#/definitions/Dapil.DapilInputUpdate'
       - description: Dapil ID
         in: path
         name: id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses: {}
@@ -819,7 +892,7 @@ paths:
         in: path
         name: id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses: {}
@@ -953,6 +1026,18 @@ paths:
       tags:
       - User Credential
   /api/v1/menu:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Menu
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Menu
+      tags:
+      - Menu
     post:
       consumes:
       - application/json
@@ -1040,6 +1125,76 @@ paths:
       summary: Menu Delete
       tags:
       - Menu
+  /api/v1/option/city:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data City
+      parameters:
+      - description: Province ID
+        in: query
+        name: province_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Cities
+      tags:
+      - Option
+  /api/v1/option/district:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data District
+      parameters:
+      - description: City ID
+        in: query
+        name: city_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: District
+      tags:
+      - Option
+  /api/v1/option/province:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Province
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Province
+      tags:
+      - Option
+  /api/v1/option/village:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Village
+      parameters:
+      - description: District ID
+        in: query
+        name: district_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Village
+      tags:
+      - Option
   /api/v1/pemilu:
     get:
       consumes:
@@ -1229,6 +1384,18 @@ paths:
       tags:
       - Profile
   /api/v1/tps:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Tps
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Tps
+      tags:
+      - Tps
     post:
       consumes:
       - application/json
@@ -1336,6 +1503,106 @@ paths:
       summary: User Create
       tags:
       - User
+  /api/v1/user-role:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Role
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Role
+      tags:
+      - Role
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Role
+      parameters:
+      - description: Role Create
+        in: body
+        name: user_role
+        required: true
+        schema:
+          $ref: '#/definitions/Role.RoleInput'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Role Create
+      tags:
+      - Role
+  /api/v1/user-role/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Role By ID
+      parameters:
+      - description: Role ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Role By ID
+      tags:
+      - Role
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Role
+      parameters:
+      - description: Role Update
+        in: body
+        name: user_roles
+        required: true
+        schema:
+          $ref: '#/definitions/Role.RoleInputUpdate'
+      - description: Role ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Role Update
+      tags:
+      - Role
+  /api/v1/user-role/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Role
+      parameters:
+      - description: Role Update
+        in: body
+        name: user_roles
+        required: true
+        schema:
+          $ref: '#/definitions/Role.RoleUpdateRequest'
+      - description: Role ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Role Delete
+      tags:
+      - Role
   /api/v1/user/{id}:
     get:
       consumes:

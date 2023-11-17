@@ -19,10 +19,10 @@ type Pemilih struct {
 	BirthPlace     string     `gorm:"type:varchar(255)" json:"birth_place"`
 	Gender         string     `gorm:"type:varchar(255)" json:"gender"`
 	Address        string     `gorm:"type:varchar(255)" json:"address"`
-	ProvinceId     uuid.UUID  `gorm:"type:uuid" json:"province_id"`
-	CityId         uuid.UUID  `gorm:"type:uuid" json:"city_id"`
-	DistrictId     uuid.UUID  `gorm:"type:uuid" json:"district_id"`
-	VillageId      uuid.UUID  `gorm:"type:uuid" json:"village_id"`
+	ProvinceId     string     `gorm:"type:varchar(100)" json:"province_id"`
+	CityId         string     `gorm:"type:varchar(100)" json:"city_id"`
+	DistrictId     string     `gorm:"type:varchar(100)" json:"district_id"`
+	VillageId      string     `gorm:"type:varchar(100)" json:"village_id"`
 	Rt             string     `gorm:"type:varchar(10)" json:"rt"`
 	Rw             string     `gorm:"type:varchar(10)" json:"rw"`
 	Longitude      float64    `gorm:"type:float8" json:"longitude"`

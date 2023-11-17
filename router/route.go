@@ -4,7 +4,10 @@ import (
 	"go_rest_api/config"
 	"go_rest_api/handlers/core/CompanyController"
 	"go_rest_api/handlers/core/LoginController"
+	"go_rest_api/handlers/core/MenuController"
+	"go_rest_api/handlers/core/OptionController"
 	"go_rest_api/handlers/core/ProfileController"
+	"go_rest_api/handlers/core/RoleController"
 	"go_rest_api/handlers/core/UserController"
 	"go_rest_api/handlers/vote/CampaignController"
 	"go_rest_api/handlers/vote/DapilController"
@@ -40,6 +43,7 @@ func SetupRoutes(app *fiber.App) {
 
 	//login system
 	v1.Get("/me", UserController.GetUser)
+	v1.Get("/menu", MenuController.GetMenu)
 	v1.Post("/logout", LoginController.LogoutUser)
 
 	//campaign
@@ -47,62 +51,87 @@ func SetupRoutes(app *fiber.App) {
 	campaign.Get("/", CampaignController.GetAll)
 	campaign.Get("/:id", CampaignController.GetById)
 	campaign.Post("/", CampaignController.Create)
+	campaign.Post("/delete", CampaignController.Delete)
 	campaign.Post("/:id", CampaignController.Update)
-	campaign.Post("/delete/:id", CampaignController.Delete)
 
 	//company
 	company := v1.Group("/company")
 	company.Get("/", CompanyController.GetAll)
 	company.Get("/:id", CompanyController.GetById)
 	company.Post("/", CompanyController.Create)
+	company.Post("/delete", CompanyController.Delete)
 	company.Post("/:id", CompanyController.Update)
-	company.Post("/delete/:id", CompanyController.Delete)
 
 	//dapil
 	dapil := v1.Group("/dapil")
 	dapil.Get("/", DapilController.GetAll)
 	dapil.Get("/:id", DapilController.GetById)
 	dapil.Post("/", DapilController.Create)
+	dapil.Post("/delete", DapilController.Delete)
 	dapil.Post("/:id", DapilController.Update)
-	dapil.Post("/delete/:id", DapilController.Delete)
 
 	//issue
 	issue := v1.Group("/issue")
 	issue.Get("/", IssueController.GetAll)
 	issue.Get("/:id", IssueController.GetById)
 	issue.Post("/", IssueController.Create)
+	issue.Post("/delete", IssueController.Delete)
 	issue.Post("/:id", IssueController.Update)
-	issue.Post("/delete/:id", IssueController.Delete)
 
 	//pemilu
 	pemilu := v1.Group("/pemilu")
 	pemilu.Get("/", PemiluController.GetAll)
 	pemilu.Get("/:id", PemiluController.GetById)
 	pemilu.Post("/", PemiluController.Create)
+	pemilu.Post("/delete", PemiluController.Delete)
 	pemilu.Post("/:id", PemiluController.Update)
-	pemilu.Post("/delete/:id", PemiluController.Delete)
 
 	//tps
 	tps := v1.Group("/tps")
 	tps.Get("/", TpsController.GetAll)
+	tps.Get("/dapil", TpsController.GetAllDapil)
+	tps.Get("/dapil-area", TpsController.GetAllDapilArea)
 	tps.Get("/:id", TpsController.GetById)
 	tps.Post("/", TpsController.Create)
+	tps.Post("/delete", TpsController.Delete)
 	tps.Post("/:id", TpsController.Update)
-	tps.Post("/delete/:id", TpsController.Delete)
 
 	//profile
 	profile := v1.Group("/profile")
 	profile.Get("/", ProfileController.GetAll)
 	profile.Get("/:id", ProfileController.GetById)
 	profile.Post("/", ProfileController.Create)
-	profile.Post("/:id", ProfileController.Update)
 	profile.Post("/delete/:id", ProfileController.Delete)
+	profile.Post("/:id", ProfileController.Update)
 
 	// user management
 	user := v1.Group("/user")
 	user.Get("/", UserController.GetAll)
 	user.Get("/:id", UserController.GetById)
 	user.Post("/", UserController.Create)
-	user.Put("/:id", UserController.Update)
-	user.Delete("/:id", UserController.Delete)
+	user.Post("/delete", UserController.Delete)
+	user.Post("/:id", UserController.Update)
+
+	// user role
+	role := v1.Group("/user-role")
+	role.Get("/", RoleController.GetAll)
+	role.Get("/:id", RoleController.GetById)
+	role.Post("/", RoleController.Create)
+	role.Post("/delete", RoleController.Delete)
+	role.Post("/:id", RoleController.Update)
+
+	//menu
+	menu := v1.Group("/menu")
+	menu.Get("/all-menu", MenuController.GetAll)
+	menu.Get("/:id", MenuController.GetById)
+	menu.Post("/", MenuController.Create)
+	menu.Post("/delete", MenuController.Delete)
+	menu.Post("/:id", MenuController.Update)
+
+	//option
+	option := v1.Group("/option")
+	option.Get("/province", OptionController.GetProvince)
+	option.Get("/city", OptionController.GetCity)
+	option.Get("/district", OptionController.GetDistrict)
+	option.Get("/village", OptionController.GetVillage)
 }

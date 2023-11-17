@@ -24,7 +24,7 @@ type User struct {
 	Name           string    `gorm:"type:varchar(100);not null"`
 	Email          string    `gorm:"type:varchar(100);uniqueIndex;not null"`
 	Password       string    `gorm:"type:varchar(100);not null"`
-	Role           string    `gorm:"type:varchar(50);default:'user';not null"`
+	Role           uuid.UUID `gorm:"type:uuid;" json:"role"`
 	CompanyId      uuid.UUID `gorm:"type:uuid" json:"company_id"`
 	Photo          string    `gorm:"not null;default:'default.png'"`
 	FirebaseToken  string    `gorm:"type:varchar(255)" json:"firebase_token"`
@@ -63,7 +63,7 @@ type UserResponse struct {
 	ID        uuid.UUID `json:"id,omitempty"`
 	Name      string    `json:"name,omitempty"`
 	Email     string    `json:"email,omitempty"`
-	Role      string    `json:"role,omitempty"`
+	Role      uuid.UUID `json:"role,omitempty"`
 	Photo     string    `json:"photo,omitempty"`
 	CompanyId uuid.UUID `json:"company_id"`
 	CreatedAt time.Time `json:"created_at"`

@@ -1,10 +1,13 @@
 package Campaign
 
 import (
+	"math"
+	"strconv"
 	"strings"
 	"time"
 
 	"go_rest_api/database"
+	"go_rest_api/models/core"
 	"go_rest_api/models/vote"
 
 	"github.com/gofiber/fiber/v2"
@@ -39,21 +42,63 @@ type CampaignUpdateRequest struct {
 	UpdatedAt      time.Time `json:"updated_at"`
 }
 
-func GetAll(c *fiber.Ctx) (u []*vote.Campaign, error error) {
-	keyword := c.Query("q")
+func GetAll(c *fiber.Ctx) (u []*vote.Campaign, tRow, tPages int, error error) {
+	user := c.Locals("user").(core.UserResponse)
+	page, _ := strconv.Atoi(c.Query("page"))
+	rows, _ := strconv.Atoi(c.Query("rows"))
+	dir := c.Query("dir")
+	sort := c.Query("sort")
+	searchCampaign := c.Query("campaign")
+	// searchCampaignTarget := c.Query("campaign_target")
+	searchTpsId := c.Query("tps_id")
+	searchCampaignStatus := c.Query("campaign_status")
+	qStatePage := "SELECT * "
 
-	qState := "SELECT * FROM campaigns "
-	if keyword != "" {
-		qState = qState + "WHERE LOWER(name) LIKE '%" + strings.ToLower(keyword) + "%'"
+	qStateTotal := "SELECT COUNT(*) as total_data "
+
+	qState := " FROM campaigns WHERE company_id = '" + user.CompanyId.String() + "' AND deleted_at is NULL"
+
+	if searchCampaignStatus != "" {
+		qState = qState + " AND lower(campaign_status) = '" + strings.ToLower(searchCampaignStatus) + "'"
 	}
-	qState = qState + " ORDER BY created_at DESC"
 
-	err := database.DB.Raw(qState).Scan(&u).Error
-	if err != nil {
-		return u, err
+	if searchTpsId != "" {
+		qState = qState + " AND lower(tps_id) = '" + strings.ToLower(searchTpsId) + "'"
 	}
 
-	return u, nil
+	if searchCampaign != "" {
+		qState = qState + " AND lower(campaign) like '%" + strings.ToLower(searchCampaign) + "%'"
+	}
+
+	qStateTotal = qStateTotal + qState
+	if err := database.DB.Raw(qStateTotal).Scan(&tRow).Error; err != nil {
+
+		return u, tRow, tPages, err
+	}
+
+	if dir != "" {
+		qState = qState + " ORDER BY " + dir + " " + sort
+	} else {
+		qState = qState + " ORDER BY created_at DESC "
+	}
+
+	qState = qStatePage + qState
+	start := 0
+	if page > 1 {
+		start = page
+		if tRow <= rows {
+			start = 0
+		}
+	}
+	tPages = int(math.Ceil(float64(tRow) / float64(rows)))
+	qState = qState + " OFFSET " + strconv.Itoa(start)
+	qState = qState + " LIMIT " + strconv.Itoa(rows)
+
+	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
+		return u, tRow, int(tPages), err
+	}
+
+	return u, tRow, int(tPages), nil
 }
 
 func GetDataByID(id string) (c *vote.Campaign, err error) {

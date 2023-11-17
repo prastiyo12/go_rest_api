@@ -73,6 +73,27 @@ const docTemplate = `{
                 "responses": {}
             }
         },
+        "/api/v1/all-menu": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Menu",
+                "responses": {}
+            }
+        },
         "/api/v1/campaign": {
             "get": {
                 "security": [
@@ -237,7 +258,7 @@ const docTemplate = `{
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "Ambil data Tps",
+                "description": "Ambil data Company",
                 "consumes": [
                     "application/json"
                 ],
@@ -245,9 +266,17 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Tps"
+                    "Company"
                 ],
-                "summary": "Tps",
+                "summary": "Company",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name search",
+                        "name": "search",
+                        "in": "query"
+                    }
+                ],
                 "responses": {}
             },
             "post": {
@@ -405,6 +434,48 @@ const docTemplate = `{
                     "Dapil"
                 ],
                 "summary": "Dapil",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Page",
+                        "name": "page",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Rows",
+                        "name": "rows",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Dir",
+                        "name": "dir",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Sort",
+                        "name": "sort",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Code",
+                        "name": "code",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Name",
+                        "name": "name",
+                        "in": "query"
+                    }
+                ],
                 "responses": {}
             },
             "post": {
@@ -431,7 +502,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Dapil.DapilRequest"
+                            "$ref": "#/definitions/Dapil.DapilInput"
                         }
                     }
                 ],
@@ -467,7 +538,7 @@ const docTemplate = `{
                         }
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "Dapil ID",
                         "name": "id",
                         "in": "path",
@@ -530,11 +601,11 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Dapil.DapilUpdateRequest"
+                            "$ref": "#/definitions/Dapil.DapilInputUpdate"
                         }
                     },
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "Dapil ID",
                         "name": "id",
                         "in": "path",
@@ -739,6 +810,25 @@ const docTemplate = `{
             }
         },
         "/api/v1/menu": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Menu",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Menu",
+                "responses": {}
+            },
             "post": {
                 "security": [
                     {
@@ -870,6 +960,117 @@ const docTemplate = `{
                         "description": "Menu ID",
                         "name": "id",
                         "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/option/city": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data City",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Cities",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Province ID",
+                        "name": "province_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/option/district": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data District",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Option"
+                ],
+                "summary": "District",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "City ID",
+                        "name": "city_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/option/province": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Province",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Province",
+                "responses": {}
+            }
+        },
+        "/api/v1/option/village": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Village",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Village",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "District ID",
+                        "name": "district_id",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -1172,6 +1373,25 @@ const docTemplate = `{
             }
         },
         "/api/v1/tps": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Tps",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tps"
+                ],
+                "summary": "Tps",
+                "responses": {}
+            },
             "post": {
                 "security": [
                     {
@@ -1336,6 +1556,163 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/User.UserRequest"
                         }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/user-role": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Role",
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Role Create",
+                "parameters": [
+                    {
+                        "description": "Role Create",
+                        "name": "user_role",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Role.RoleInput"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/user-role/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Role Delete",
+                "parameters": [
+                    {
+                        "description": "Role Update",
+                        "name": "user_roles",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Role.RoleUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Role ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/user-role/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Role By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Role By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Role ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Role Update",
+                "parameters": [
+                    {
+                        "description": "Role Update",
+                        "name": "user_roles",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Role.RoleInputUpdate"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Role ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {}
@@ -1594,19 +1971,21 @@ const docTemplate = `{
                 }
             }
         },
-        "Dapil.DapilRequest": {
+        "Dapil.DapilInput": {
             "type": "object",
             "properties": {
                 "code": {
                     "type": "string"
                 },
-                "created_at": {
+                "name": {
                     "type": "string"
-                },
-                "created_by": {
-                    "type": "string"
-                },
-                "id": {
+                }
+            }
+        },
+        "Dapil.DapilInputUpdate": {
+            "type": "object",
+            "properties": {
+                "code": {
                     "type": "string"
                 },
                 "name": {
@@ -2007,6 +2386,45 @@ const docTemplate = `{
                 }
             }
         },
+        "Role.RoleInput": {
+            "type": "object",
+            "properties": {
+                "company_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Role.RoleInputUpdate": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "Role.RoleUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "boolean"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
         "Tps.TpsRequest": {
             "type": "object",
             "properties": {
@@ -2017,6 +2435,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "created_by": {
+                    "type": "string"
+                },
+                "dapil_area_id": {
                     "type": "string"
                 },
                 "dapil_id": {
@@ -2033,9 +2454,6 @@ const docTemplate = `{
                 },
                 "status": {
                     "type": "boolean"
-                },
-                "village_id": {
-                    "type": "string"
                 }
             }
         },
@@ -2043,6 +2461,9 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "code": {
+                    "type": "string"
+                },
+                "dapil_area_id": {
                     "type": "string"
                 },
                 "dapil_id": {
@@ -2061,9 +2482,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "updated_by": {
-                    "type": "string"
-                },
-                "village_id": {
                     "type": "string"
                 }
             }
@@ -2193,7 +2611,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "",
-	Host:             "service.radanka.com",
+	Host:             "localhost:3000",
 	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "API Documentation",

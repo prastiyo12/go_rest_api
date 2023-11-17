@@ -20,7 +20,7 @@ import (
 //
 // @Router			/api/v1/campaign [get]
 func GetAll(c *fiber.Ctx) error {
-	data, err := Campaign.GetAll(c)
+	data, totalRows, totalPages, err := Campaign.GetAll(c)
 
 	if err != nil {
 		err := c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"code": fiber.StatusBadRequest, "message": err.Error()})
@@ -30,7 +30,7 @@ func GetAll(c *fiber.Ctx) error {
 		return err
 	}
 
-	err = c.Status(fiber.StatusOK).JSON(fiber.Map{"code": fiber.StatusOK, "message": "success", "data": data})
+	err = c.Status(fiber.StatusOK).JSON(fiber.Map{"code": fiber.StatusOK, "message": "Data Stored.", "data": data, "totalRow": totalRows, "totalPages": totalPages})
 	if err != nil {
 		return err
 	}

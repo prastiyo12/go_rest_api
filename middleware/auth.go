@@ -34,12 +34,12 @@ func DeserializeUser(c *fiber.Ctx) error {
 		return []byte(config.Config("JWT_SECRET")), nil
 	})
 	if err != nil {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"status": "fail", "message": fmt.Sprintf("invalidate token: %v", err)})
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"code": fiber.StatusUnauthorized, "status": "fail", "message": fmt.Sprintf("invalidate token: %v", err)})
 	}
 
 	claims, ok := tokenByte.Claims.(jwt.MapClaims)
 	if !ok || !tokenByte.Valid {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"status": "fail", "message": "invalid token claim"})
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"code": fiber.StatusUnauthorized, "status": "fail", "message": "invalid token claim"})
 
 	}
 
@@ -48,7 +48,7 @@ func DeserializeUser(c *fiber.Ctx) error {
 	db.First(&user, "id = ?", fmt.Sprint(claims["sub"]))
 
 	if user.ID.String() != claims["sub"] {
-		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"status": "fail", "message": "the user belonging to this token no logger exists"})
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"code": fiber.StatusForbidden, "status": "fail", "message": "the user belonging to this token no logger exists"})
 	}
 
 	c.Locals("user", core.FilterUserRecord(&user))

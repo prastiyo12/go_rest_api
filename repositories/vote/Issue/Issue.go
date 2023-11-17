@@ -1,10 +1,13 @@
 package Issue
 
 import (
+	"math"
+	"strconv"
 	"strings"
 	"time"
 
 	"go_rest_api/database"
+	"go_rest_api/models/core"
 	"go_rest_api/models/vote"
 
 	"github.com/gofiber/fiber/v2"
@@ -32,21 +35,58 @@ type IssueUpdateRequest struct {
 	UpdatedAt     *time.Time `json:"updated_at"`
 }
 
-func GetAll(c *fiber.Ctx) (u []*vote.Issue, error error) {
-	keyword := c.Query("q")
+func GetAll(c *fiber.Ctx) (u []*vote.Issue, tRow, tPages int, error error) {
+	user := c.Locals("user").(core.UserResponse)
+	page, _ := strconv.Atoi(c.Query("page"))
+	rows, _ := strconv.Atoi(c.Query("rows"))
+	dir := c.Query("dir")
+	sort := c.Query("sort")
+	searchIssue := c.Query("issue")
+	searchIssueMaker := c.Query("issue_maker")
+	qStatePage := "SELECT * "
 
-	sqlState := "SELECT * FROM issues "
-	if keyword != "" {
-		sqlState = sqlState + "WHERE LOWER(issue) LIKE '%" + strings.ToLower(keyword) + "%'"
+	qStateTotal := "SELECT COUNT(*) as total_data "
+
+	qState := " FROM issues WHERE company_id = '" + user.CompanyId.String() + "' AND deleted_at is NULL"
+
+	if searchIssueMaker != "" {
+		qState = qState + " AND lower(issue_maker) = '" + strings.ToLower(searchIssueMaker) + "'"
 	}
-	sqlState = sqlState + " ORDER BY created_at DESC"
 
-	err := database.DB.Raw(sqlState).Scan(&u).Error
-	if err != nil {
-		return u, err
+	if searchIssue != "" {
+		qState = qState + " AND lower(issue) like '%" + strings.ToLower(searchIssue) + "%'"
 	}
 
-	return u, nil
+	qStateTotal = qStateTotal + qState
+	//fmt.Println("qStateTotal :", qStateTotal)
+	if err := database.DB.Raw(qStateTotal).Scan(&tRow).Error; err != nil {
+
+		return u, tRow, tPages, err
+	}
+
+	if dir != "" {
+		qState = qState + " ORDER BY " + dir + " " + sort
+	} else {
+		qState = qState + " ORDER BY created_at DESC "
+	}
+
+	qState = qStatePage + qState
+	start := 0
+	if page > 1 {
+		start = page
+		if tRow <= rows {
+			start = 0
+		}
+	}
+	tPages = int(math.Ceil(float64(tRow) / float64(rows)))
+	qState = qState + " OFFSET " + strconv.Itoa(start)
+	qState = qState + " LIMIT " + strconv.Itoa(rows)
+
+	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
+		return u, tRow, int(tPages), err
+	}
+
+	return u, tRow, int(tPages), nil
 }
 
 func GetDataByID(id string) (c *vote.Issue, err error) {

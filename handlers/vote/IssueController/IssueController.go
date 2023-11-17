@@ -17,7 +17,20 @@ import (
 //
 // @Router			/api/v1/issue [get]
 func GetAll(c *fiber.Ctx) error {
-	var err error
+	data, totalRows, totalPages, err := Issue.GetAll(c)
+
+	if err != nil {
+		err := c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"code": fiber.StatusBadRequest, "message": err.Error()})
+		if err != nil {
+			return err
+		}
+		return err
+	}
+
+	err = c.Status(fiber.StatusOK).JSON(fiber.Map{"code": fiber.StatusOK, "message": "Data Stored.", "data": data, "totalRow": totalRows, "totalPages": totalPages})
+	if err != nil {
+		return err
+	}
 	return err
 }
 
