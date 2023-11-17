@@ -1971,14 +1971,37 @@ const docTemplate = `{
                 }
             }
         },
+        "Dapil.DArea": {
+            "type": "object",
+            "properties": {
+                "district_id": {
+                    "type": "string"
+                }
+            }
+        },
         "Dapil.DapilInput": {
             "type": "object",
             "properties": {
+                "areas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Dapil.DArea"
+                    }
+                },
+                "city_id": {
+                    "type": "string"
+                },
                 "code": {
                     "type": "string"
                 },
                 "name": {
                     "type": "string"
+                },
+                "province_id": {
+                    "type": "string"
+                },
+                "total_voters": {
+                    "type": "integer"
                 }
             }
         },
@@ -1993,6 +2016,9 @@ const docTemplate = `{
                 },
                 "status": {
                     "type": "boolean"
+                },
+                "total_voters": {
+                    "type": "integer"
                 }
             }
         },
@@ -2007,6 +2033,9 @@ const docTemplate = `{
                 },
                 "status": {
                     "type": "boolean"
+                },
+                "total_voters": {
+                    "type": "integer"
                 },
                 "updated_at": {
                     "type": "string"
@@ -2438,7 +2467,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "dapil_area_id": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "dapil_id": {
                     "type": "string"
@@ -2464,7 +2493,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "dapil_area_id": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "dapil_id": {
                     "type": "string"
@@ -2611,7 +2640,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "",
-	Host:             "localhost:3000",
+	Host:             "service.radanka.com",
 	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "API Documentation",

@@ -95,12 +95,27 @@ definitions:
       updated_by:
         type: string
     type: object
+  Dapil.DArea:
+    properties:
+      district_id:
+        type: string
+    type: object
   Dapil.DapilInput:
     properties:
+      areas:
+        items:
+          $ref: '#/definitions/Dapil.DArea'
+        type: array
+      city_id:
+        type: string
       code:
         type: string
       name:
         type: string
+      province_id:
+        type: string
+      total_voters:
+        type: integer
     type: object
   Dapil.DapilInputUpdate:
     properties:
@@ -110,6 +125,8 @@ definitions:
         type: string
       status:
         type: boolean
+      total_voters:
+        type: integer
     type: object
   Dapil.DapilUpdateRequest:
     properties:
@@ -119,6 +136,8 @@ definitions:
         type: string
       status:
         type: boolean
+      total_voters:
+        type: integer
       updated_at:
         type: string
       updated_by:
@@ -402,7 +421,7 @@ definitions:
       created_by:
         type: string
       dapil_area_id:
-        type: string
+        type: integer
       dapil_id:
         type: string
       id:
@@ -419,7 +438,7 @@ definitions:
       code:
         type: string
       dapil_area_id:
-        type: string
+        type: integer
       dapil_id:
         type: string
       name:
@@ -509,7 +528,7 @@ definitions:
 externalDocs:
   description: OpenAPI
   url: https://swagger.io/resources/open-api/
-host: localhost:3000
+host: service.radanka.com
 info:
   contact:
     email: prastiyo.beka12@gmail.com

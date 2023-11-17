@@ -9,7 +9,7 @@
             "email": "prastiyo.beka12@gmail.com"
         }
     },
-    "host": "localhost:3000",
+    "host": "service.radanka.com",
     "paths": {
         "/api/auth/login": {
             "post": {
@@ -1963,14 +1963,37 @@
                 }
             }
         },
+        "Dapil.DArea": {
+            "type": "object",
+            "properties": {
+                "district_id": {
+                    "type": "string"
+                }
+            }
+        },
         "Dapil.DapilInput": {
             "type": "object",
             "properties": {
+                "areas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Dapil.DArea"
+                    }
+                },
+                "city_id": {
+                    "type": "string"
+                },
                 "code": {
                     "type": "string"
                 },
                 "name": {
                     "type": "string"
+                },
+                "province_id": {
+                    "type": "string"
+                },
+                "total_voters": {
+                    "type": "integer"
                 }
             }
         },
@@ -1985,6 +2008,9 @@
                 },
                 "status": {
                     "type": "boolean"
+                },
+                "total_voters": {
+                    "type": "integer"
                 }
             }
         },
@@ -1999,6 +2025,9 @@
                 },
                 "status": {
                     "type": "boolean"
+                },
+                "total_voters": {
+                    "type": "integer"
                 },
                 "updated_at": {
                     "type": "string"
@@ -2430,7 +2459,7 @@
                     "type": "string"
                 },
                 "dapil_area_id": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "dapil_id": {
                     "type": "string"
@@ -2456,7 +2485,7 @@
                     "type": "string"
                 },
                 "dapil_area_id": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "dapil_id": {
                     "type": "string"
