@@ -77,6 +77,7 @@ func FilterUserRecord(user *User) UserResponse {
 		ID:        user.ID,
 		Name:      user.Name,
 		Email:     user.Email,
+		Phone:     user.Phone,
 		Role:      user.Role,
 		Photo:     user.Photo,
 		CompanyId: user.CompanyId,
