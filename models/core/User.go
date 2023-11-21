@@ -64,6 +64,7 @@ type UserResponse struct {
 	ID        uuid.UUID `json:"id,omitempty"`
 	Name      string    `json:"name,omitempty"`
 	Email     string    `json:"email,omitempty"`
+	Phone     string    `json:"phone,omitempty"`
 	Role      uuid.UUID `json:"role,omitempty"`
 	Photo     string    `json:"photo,omitempty"`
 	CompanyId uuid.UUID `json:"company_id"`
