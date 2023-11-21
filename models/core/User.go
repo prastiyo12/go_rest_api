@@ -26,7 +26,7 @@ type User struct {
 	Password       string    `gorm:"type:varchar(100);not null" json:"password"`
 	Role           uuid.UUID `gorm:"type:uuid;" json:"role"`
 	CompanyId      uuid.UUID `gorm:"type:uuid" json:"company_id"`
-	phone          string    `gorm:"not null;" json:"phone"`
+	Phone          string    `gorm:"not null;" json:"phone"`
 	Photo          string    `gorm:"not null;default:'default.png'" json:"photo"`
 	FirebaseToken  string    `gorm:"type:varchar(255)" json:"firebase_token"`
 	ActivationCode string    `gorm:"type:varchar(255)" json:"activation_code"`

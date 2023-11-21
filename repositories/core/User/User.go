@@ -1,6 +1,8 @@
 package User
 
 import (
+	"math"
+	"strconv"
 	"strings"
 	"time"
 
@@ -12,55 +14,120 @@ import (
 )
 
 type UserRequest struct {
-	ID        uuid.UUID  `json:"id"`
-	DapilId   uuid.UUID  `json:"dapil_id"`
-	VillageId uuid.UUID  `json:"village_id"`
-	Rw        string     `json:"rw"`
-	Code      string     `json:"code"`
-	Name      string     `json:"name"`
-	Status    *bool      `json:"status"`
-	CreatedBy uuid.UUID  `json:"created_by"`
-	CreatedAt *time.Time `json:"created_at"`
+	ID             uuid.UUID `json:"id"`
+	Name           string    `json:"name"`
+	Email          string    `json:"email"`
+	Password       string    `json:"password"`
+	Role           uuid.UUID `json:"role"`
+	CompanyId      uuid.UUID `json:"company_id"`
+	Phone          string    `json:"phone"`
+	Photo          string    `json:"photo"`
+	FirebaseToken  string    `json:"firebase_token"`
+	ActivationCode string    `json:"activation_code"`
+	Status         bool      `json:"status"`
+	CreatedAt      time.Time `json:"created_at"`
 }
 
 type UserUpdateRequest struct {
-	DapilId   uuid.UUID  `json:"dapil_id"`
-	VillageId uuid.UUID  `json:"village_id"`
-	Rw        string     `json:"rw"`
-	Code      string     `json:"code"`
-	Name      string     `json:"name"`
-	Status    *bool      `json:"status"`
-	UpdatedBy uuid.UUID  `json:"updated_by"`
-	UpdatedAt *time.Time `json:"updated_at"`
+	Name           string    `json:"name"`
+	Email          string    `json:"email"`
+	Password       string    `json:"password"`
+	Role           uuid.UUID `json:"role"`
+	CompanyId      uuid.UUID `json:"company_id"`
+	Phone          string    `json:"phone"`
+	Photo          string    `json:"photo"`
+	FirebaseToken  string    `json:"firebase_token"`
+	ActivationCode string    `json:"activation_code"`
+	Status         bool      `json:"status"`
+	UpdatedAt      time.Time `json:"updated_at"`
 }
 
-func GetAll(c *fiber.Ctx) (u []*core.User, error error) {
-	keyword := c.Query("q")
+type UserResponse struct {
+	ID             uuid.UUID `json:"id"`
+	Name           string    `json:"name"`
+	Email          string    `json:"email"`
+	Password       string    `json:"password"`
+	Role           uuid.UUID `json:"role"`
+	CompanyId      uuid.UUID `json:"company_id"`
+	CompanyName    string    `json:"company_name"`
+	RoleName       string    `json:"role_name"`
+	Phone          string    `json:"phone"`
+	Photo          string    `json:"photo"`
+	FirebaseToken  string    `json:"firebase_token"`
+	ActivationCode string    `json:"activation_code"`
+	Status         bool      `json:"status"`
+	CreatedAt      time.Time `json:"created_at"`
+}
 
-	sqlState := "SELECT * FROM tps "
-	if keyword != "" {
-		sqlState = sqlState + "WHERE LOWER(name) LIKE '%" + strings.ToLower(keyword) + "%'"
+func GetAll(c *fiber.Ctx) (u []*UserResponse, tRow, tPages int, error error) {
+	page, _ := strconv.Atoi(c.Query("page"))
+	rows, _ := strconv.Atoi(c.Query("rows"))
+	dir := c.Query("dir")
+	sort := c.Query("sort")
+	searchName := c.Query("name")
+	searchEmail := c.Query("email")
+	searchPhone := c.Query("phone")
+	qStatePage := "SELECT u.*, c.name as company_name, ur.name as role_name "
+
+	qStateTotal := "SELECT COUNT(*) as total_data "
+
+	qState := " FROM users u left join company c on u.company_id = c.id"
+	qState = qState + " left join user_roles ur on u.role = ur.id"
+	qState = qState + " WHERE c.deleted_at is NULL"
+
+	if searchName != "" {
+		qState = qState + " AND lower(c.name) like '%" + strings.ToLower(searchName) + "%'"
 	}
-	sqlState = sqlState + " ORDER BY created_at DESC"
 
-	err := database.DB.Raw(sqlState).Scan(&u).Error
-	if err != nil {
-		return u, err
+	if searchEmail != "" {
+		qState = qState + " AND lower(c.email) like '%" + strings.ToLower(searchEmail) + "%'"
 	}
 
-	return u, nil
+	if searchPhone != "" {
+		qState = qState + " AND lower(c.phone) like '%" + strings.ToLower(searchPhone) + "%'"
+	}
+
+	qStateTotal = qStateTotal + qState
+	if err := database.DB.Raw(qStateTotal).Scan(&tRow).Error; err != nil {
+
+		return u, tRow, tPages, err
+	}
+
+	if dir != "" {
+		qState = qState + " ORDER BY " + dir + " " + sort
+	} else {
+		qState = qState + " ORDER BY c.created_at DESC "
+	}
+
+	qState = qStatePage + qState
+	start := 0
+	if page > 1 {
+		start = page
+		if tRow <= rows {
+			start = 0
+		}
+	}
+	tPages = int(math.Ceil(float64(tRow) / float64(rows)))
+	qState = qState + " OFFSET " + strconv.Itoa(start)
+	qState = qState + " LIMIT " + strconv.Itoa(rows)
+
+	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
+		return u, tRow, int(tPages), err
+	}
+
+	return u, tRow, int(tPages), nil
 }
 
 func GetDataByID(id string) (c *core.User, err error) {
-	err = database.DB.Table("tps").Where("id = ?", id).Find(&c).Error
+	err = database.DB.Table("users").Where("id = ?", id).Find(&c).Error
 	if err != nil {
 		return &core.User{}, err
 	}
 	return c, nil
 }
 
-func (c *UserRequest) Store() (*UserRequest, error) {
-	var err = database.DB.Table("tps").Create(&c).Error
+func (c *UserRequest) Create() (*UserRequest, error) {
+	var err = database.DB.Table("users").Create(&c).Error
 	if err != nil {
 		return &UserRequest{}, err
 	}
@@ -68,7 +135,7 @@ func (c *UserRequest) Store() (*UserRequest, error) {
 }
 
 func (u *UserUpdateRequest) Update(id string) (*UserUpdateRequest, error) {
-	var err = database.DB.Table("tps").Where("id = ?", id).Updates(&u).Error
+	var err = database.DB.Table("users").Where("id = ?", id).Updates(&u).Error
 	if err != nil {
 		return u, err
 	}
@@ -76,7 +143,7 @@ func (u *UserUpdateRequest) Update(id string) (*UserUpdateRequest, error) {
 }
 
 func Delete(id string) error {
-	var err = database.DB.Table("tps").Where("id = ?", id).Delete(core.Company{}).Error
+	var err = database.DB.Table("users").Where("id = ?", id).Delete(core.Company{}).Error
 	if err != nil {
 		return err
 	}
@@ -84,7 +151,7 @@ func Delete(id string) error {
 }
 
 func (u *UserUpdateRequest) UpdateStatus(id string) (*UserUpdateRequest, error) {
-	var err = database.DB.Table("tps").Where("id = ?", id).Update("status", u.Status).Error
+	var err = database.DB.Table("users").Where("id = ?", id).Update("status", u.Status).Error
 	if err != nil {
 		return &UserUpdateRequest{}, err
 	}
