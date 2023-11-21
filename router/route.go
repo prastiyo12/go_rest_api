@@ -111,6 +111,7 @@ func SetupRoutes(app *fiber.App) {
 	user.Get("/:id", UserController.GetById)
 	user.Post("/", UserController.Create)
 	user.Post("/delete", UserController.Delete)
+	user.Post("/upload-image/:id", UserController.UploadImage)
 	user.Post("/:id", UserController.Update)
 
 	// user role

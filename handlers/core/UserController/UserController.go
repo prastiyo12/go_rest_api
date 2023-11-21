@@ -1,9 +1,11 @@
 package UserController
 
 import (
+	"fmt"
 	"go_rest_api/models/core"
 	"go_rest_api/repositories/core/User"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/go-playground/validator/v10"
@@ -182,4 +184,40 @@ func Delete(c *fiber.Ctx) error {
 	)
 	log.Println(payload)
 	return err
+}
+
+func UploadImage(c *fiber.Ctx) error {
+	file, err := c.FormFile("image")
+	var Id = c.Params("id")
+	if err != nil {
+		log.Println("Error in uploading Image : ", err)
+		return c.JSON(fiber.Map{"status": 500, "message": "Server error", "data": nil})
+
+	}
+
+	filename := strings.Replace(Id, "-", "", -1)
+
+	fileExt := strings.Split(file.Filename, ".")[1]
+
+	image := fmt.Sprintf("%s.%s", filename, fileExt)
+
+	err = c.SaveFile(file, fmt.Sprintf("./resources/images/%s", image))
+
+	if err != nil {
+		log.Println("Error in saving Image :", err)
+		return c.JSON(fiber.Map{"status": 500, "message": "Server error", "data": nil})
+	}
+
+	baseUrl := c.BaseURL()
+	imageUrl := fmt.Sprintf("%s/resources/images/%s", baseUrl, image)
+
+	data := map[string]interface{}{
+
+		"imageName": image,
+		"imageUrl":  imageUrl,
+		"header":    file.Header,
+		"size":      file.Size,
+	}
+
+	return c.JSON(fiber.Map{"status": 201, "message": "Image uploaded successfully", "data": data})
 }

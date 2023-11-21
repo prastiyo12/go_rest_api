@@ -7,8 +7,10 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	_ "github.com/lib/pq"
+	"github.com/markbates/pkger"
 )
 
 //	@title			API Documentation
@@ -33,9 +35,9 @@ func main() {
 	app.Use(logger.New())
 	app.Use(cors.New())
 	router.SetupRoutes(app)
-	// handle unavailable route
-	app.Use(func(c *fiber.Ctx) error {
-		return c.SendStatus(404) // => 404 "Not Found"
-	})
+	app.Use("/image", filesystem.New(filesystem.Config{
+		Root: pkger.Dir("/resources/images"),
+	}))
+
 	app.Listen(config.Config("APP_PORT"))
 }
