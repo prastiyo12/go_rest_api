@@ -208,6 +208,6 @@ func UploadImage(c *fiber.Ctx) error {
 	}
 
 	baseUrl := c.BaseURL()
-	imageUrl := fmt.Sprintf("%s/resources/images/%s", baseUrl, image)
+	imageUrl := fmt.Sprintf("%s/image/%s", baseUrl, image)
 	return c.JSON(fiber.Map{"status": 200, "message": "Image uploaded successfully", "data": imageUrl, "filename": image})
 }
