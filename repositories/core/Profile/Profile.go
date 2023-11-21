@@ -118,3 +118,19 @@ func (u *ProfileUpdateRequest) UpdateStatus(id string) (*ProfileUpdateRequest, e
 	}
 	return u, nil
 }
+
+func GetAllUserTye(c *fiber.Ctx, companyId uuid.UUID) (u []*core.UserType, error error) {
+	qState := "SELECT id, name FROM user_types WHERE deleted_at is null AND company_id = '" + companyId.String() + "' "
+	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
+		return u, err
+	}
+	return u, nil
+}
+
+func GetAllUserRelawan(c *fiber.Ctx, companyId uuid.UUID) (u []*core.User, error error) {
+	qState := "SELECT id, name FROM users WHERE deleted_at is null AND company_id = '" + companyId.String() + "' "
+	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
+		return u, err
+	}
+	return u, nil
+}

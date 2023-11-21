@@ -160,8 +160,8 @@ func (u *TpsUpdateRequest) Update(id string) (*TpsUpdateRequest, error) {
 	return u, nil
 }
 
-func Delete(id string) error {
-	var err = database.DB.Table("tps").Where("id = ?", id).Delete(vote.Tps{}).Error
+func Delete(id uuid.UUID) error {
+	var err = database.DB.Table("tps").Where("id = ?", id).Delete(&vote.Tps{}).Error
 	if err != nil {
 		return err
 	}
@@ -191,6 +191,20 @@ func GetAllDapilArea(c *fiber.Ctx) (u []*DapilAreaOption, error error) {
 	qState = qState + " left join address_districts b on a.district_id = b.id"
 	qState = qState + " left join address_villages c on a.village_id = c.id"
 	qState = qState + " WHERE dapil_id = '" + dapilId + "' "
+	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
+		return u, err
+	}
+
+	return u, nil
+}
+
+func GetAllTps(c *fiber.Ctx) (u []*DapilOption, error error) {
+	cityId := c.Query("city_id")
+	qState := "SELECT t.id, t.name FROM tps t JOIN dapil_areas d on t.dapil_id = d.dapil_id WHERE t.deleted_at is null "
+	if cityId != "" {
+		qState = qState + " AND d.city_id = '" + cityId + "'"
+	}
+	qState = qState + " GROUP BY t.id"
 	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
 		return u, err
 	}

@@ -194,3 +194,37 @@ func Delete(c *fiber.Ctx) error {
 	}
 	return err
 }
+
+func GetAllUserType(c *fiber.Ctx) error {
+	user := c.Locals("user").(core.UserResponse)
+	data, err := Profile.GetAllUserTye(c, user.CompanyId)
+	if err != nil {
+		err := c.Status(fiber.StatusBadRequest).SendString(err.Error())
+		if err != nil {
+			return nil
+		}
+	}
+
+	err = c.Status(fiber.StatusOK).JSON(fiber.Map{"code": fiber.StatusOK, "message": "success", "data": data})
+	if err != nil {
+		return nil
+	}
+	return err
+}
+
+func GetAllUser(c *fiber.Ctx) error {
+	user := c.Locals("user").(core.UserResponse)
+	data, err := Profile.GetAllUserRelawan(c, user.CompanyId)
+	if err != nil {
+		err := c.Status(fiber.StatusBadRequest).SendString(err.Error())
+		if err != nil {
+			return nil
+		}
+	}
+
+	err = c.Status(fiber.StatusOK).JSON(fiber.Map{"code": fiber.StatusOK, "message": "success", "data": data})
+	if err != nil {
+		return nil
+	}
+	return err
+}

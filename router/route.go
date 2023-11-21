@@ -91,6 +91,7 @@ func SetupRoutes(app *fiber.App) {
 	tps.Get("/", TpsController.GetAll)
 	tps.Get("/dapil", TpsController.GetAllDapil)
 	tps.Get("/dapil-area", TpsController.GetAllDapilArea)
+	tps.Get("/tps", TpsController.GetAllTps)
 	tps.Get("/:id", TpsController.GetById)
 	tps.Post("/", TpsController.Create)
 	tps.Post("/delete", TpsController.Delete)
@@ -134,4 +135,6 @@ func SetupRoutes(app *fiber.App) {
 	option.Get("/city", OptionController.GetCity)
 	option.Get("/district", OptionController.GetDistrict)
 	option.Get("/village", OptionController.GetVillage)
+	option.Get("/user-type", ProfileController.GetAllUserType)
+	option.Get("/users", ProfileController.GetAllUser)
 }

@@ -20,13 +20,14 @@ type LoginResponse struct {
 // User struct
 type User struct {
 	gorm.Model
-	ID             uuid.UUID `gorm:"type:uuid;primary_key"`
-	Name           string    `gorm:"type:varchar(100);not null"`
-	Email          string    `gorm:"type:varchar(100);uniqueIndex;not null"`
-	Password       string    `gorm:"type:varchar(100);not null"`
+	ID             uuid.UUID `gorm:"type:uuid;primary_key" json:"id"`
+	Name           string    `gorm:"type:varchar(100);not null" json:"name"`
+	Email          string    `gorm:"type:varchar(100);uniqueIndex;not null" json:"email"`
+	Password       string    `gorm:"type:varchar(100);not null" json:"password"`
 	Role           uuid.UUID `gorm:"type:uuid;" json:"role"`
 	CompanyId      uuid.UUID `gorm:"type:uuid" json:"company_id"`
-	Photo          string    `gorm:"not null;default:'default.png'"`
+	phone          string    `gorm:"not null;" json:"phone"`
+	Photo          string    `gorm:"not null;default:'default.png'" json:"photo"`
 	FirebaseToken  string    `gorm:"type:varchar(255)" json:"firebase_token"`
 	ActivationCode string    `gorm:"type:varchar(255)" json:"activation_code"`
 	Status         bool      `gorm:"not null;default:false"`

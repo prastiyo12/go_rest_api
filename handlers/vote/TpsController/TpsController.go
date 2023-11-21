@@ -177,10 +177,16 @@ func Update(c *fiber.Ctx) error {
 // @Router			/api/v1/tps/delete/{id} [post]
 func Delete(c *fiber.Ctx) error {
 	var (
-		err error
+		err    error
+		params Tps.TpsRequest
 	)
-	var Id = c.Params("id")
-	err = Tps.Delete(Id)
+	if err := c.BodyParser(&params); err != nil {
+		err := c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"code": fiber.StatusBadRequest, "message": err.Error()})
+		if err != nil {
+			return nil
+		}
+	}
+	err = Tps.Delete(params.ID)
 	if err != nil {
 		err := c.Status(fiber.StatusBadRequest).SendString(err.Error())
 		if err != nil {
@@ -213,6 +219,22 @@ func GetAllDapil(c *fiber.Ctx) error {
 
 func GetAllDapilArea(c *fiber.Ctx) error {
 	data, err := Tps.GetAllDapilArea(c)
+	if err != nil {
+		err := c.Status(fiber.StatusBadRequest).SendString(err.Error())
+		if err != nil {
+			return nil
+		}
+	}
+
+	err = c.Status(fiber.StatusOK).JSON(fiber.Map{"code": fiber.StatusOK, "message": "success", "data": data})
+	if err != nil {
+		return nil
+	}
+	return err
+}
+
+func GetAllTps(c *fiber.Ctx) error {
+	data, err := Tps.GetAllTps(c)
 	if err != nil {
 		err := c.Status(fiber.StatusBadRequest).SendString(err.Error())
 		if err != nil {

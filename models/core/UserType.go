@@ -9,12 +9,12 @@ import (
 
 type UserType struct {
 	gorm.Model
-	ID        uuid.UUID `gorm:"type:uuid;primary_key"`
+	ID        uuid.UUID `gorm:"type:uuid;primary_key" json:"id"`
 	CompanyId uuid.UUID `gorm:"type:uuid" json:"company_id"`
-	Name      string    `gorm:"type:varchar(100);not null"`
-	Status    bool      `gorm:"not null;default:false"`
-	CreatedAt time.Time `gorm:"not null;default:now()"`
-	UpdatedAt time.Time `gorm:"not null;default:now()"`
+	Name      string    `gorm:"type:varchar(100);not null" json:"name"`
+	Status    bool      `gorm:"not null;default:false" json:"status"`
+	CreatedAt time.Time `gorm:"not null;default:now()" json:"created_at"`
+	UpdatedAt time.Time `gorm:"not null;default:now()" json:"updated_at"`
 }
 
 func (tipe *UserType) BeforeCreate(tx *gorm.DB) (err error) {
