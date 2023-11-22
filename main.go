@@ -38,6 +38,8 @@ func main() {
 	app.Use("/image", filesystem.New(filesystem.Config{
 		Root: pkger.Dir("/resources/images"),
 	}))
-
+	app.Use(func(c *fiber.Ctx) error {
+		return c.SendStatus(404) // => 404 "Not Found"
+	})
 	app.Listen(config.Config("APP_PORT"))
 }

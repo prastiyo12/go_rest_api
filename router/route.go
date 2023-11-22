@@ -138,4 +138,8 @@ func SetupRoutes(app *fiber.App) {
 	option.Get("/village", OptionController.GetVillage)
 	option.Get("/user-type", ProfileController.GetAllUserType)
 	option.Get("/users", ProfileController.GetAllUser)
+
+	//mobile
+	mobile := v1.Group("mobile")
+	mobile.Get("/issue", IssueController.GetAll)
 }
