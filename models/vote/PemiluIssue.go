@@ -9,11 +9,13 @@ import (
 
 type Issue struct {
 	gorm.Model
-	ID            uuid.UUID  `gorm:"type:uuid;primary_key"`
-	CompanyId     uuid.UUID  `gorm:"type:uuid"`
+	ID            uuid.UUID  `gorm:"type:uuid;primary_key" json:"id"`
+	CompanyId     uuid.UUID  `gorm:"type:uuid" json:"company_id"`
+	IssueTitle    string     `gorm:"type:varchar(255);not null" json:"issue_title"`
 	Issue         string     `gorm:"type:varchar(255);not null" json:"issue"`
 	IssueMaker    string     `gorm:"type:varchar(255);not null" json:"issue_maker"`
 	IssueSolution string     `gorm:"type:varchar(255);not null" json:"issue_solution"`
+	IssuePhoto    string     `gorm:"type:varchar(255);not null" json:"issue_photo"`
 	Status        *bool      `gorm:"not null;default:false"`
 	CreatedBy     uuid.UUID  `gorm:"type:uuid" json:"created_by"`
 	UpdatedBy     uuid.UUID  `gorm:"type:uuid" json:"updated_by"`

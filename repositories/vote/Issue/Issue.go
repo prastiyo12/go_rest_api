@@ -15,24 +15,28 @@ import (
 )
 
 type IssueRequest struct {
-	ID            uuid.UUID  `json:"id"`
-	CompanyId     uuid.UUID  `json:"company_id"`
-	Issue         string     `json:"issue"`
-	IssueMaker    string     `json:"issue_maker"`
-	IssueSolution string     `json:"issue_solution"`
-	Status        *bool      `json:"status"`
-	CreatedBy     uuid.UUID  `json:"created_by"`
-	CreatedAt     *time.Time `json:"created_at"`
+	ID            uuid.UUID `json:"id"`
+	CompanyId     uuid.UUID `json:"company_id"`
+	Issue         string    `json:"issue"`
+	IssueTitle    string    `json:"issue_title"`
+	IssuePhoto    string    `json:"issue_photo"`
+	IssueMaker    string    `json:"issue_maker"`
+	IssueSolution string    `json:"issue_solution"`
+	Status        bool      `json:"status"`
+	CreatedBy     uuid.UUID `json:"created_by"`
+	CreatedAt     time.Time `json:"created_at"`
 }
 
 type IssueUpdateRequest struct {
-	CompanyId     uuid.UUID  `json:"company_id"`
-	Issue         string     `json:"issue"`
-	IssueMaker    string     `json:"issue_maker"`
-	IssueSolution string     `json:"issue_solution"`
-	Status        *bool      `json:"status"`
-	UpdatedBy     uuid.UUID  `json:"updated_by"`
-	UpdatedAt     *time.Time `json:"updated_at"`
+	CompanyId     uuid.UUID `json:"company_id"`
+	Issue         string    `json:"issue"`
+	IssueTitle    string    `json:"issue_title"`
+	IssuePhoto    string    `json:"issue_photo"`
+	IssueMaker    string    `json:"issue_maker"`
+	IssueSolution string    `json:"issue_solution"`
+	Status        bool      `json:"status"`
+	UpdatedBy     uuid.UUID `json:"updated_by"`
+	UpdatedAt     time.Time `json:"updated_at"`
 }
 
 func GetAll(c *fiber.Ctx) (u []*vote.Issue, tRow, tPages int, error error) {
@@ -97,7 +101,7 @@ func GetDataByID(id string) (c *vote.Issue, err error) {
 	return c, nil
 }
 
-func (c *IssueRequest) Store() (*IssueRequest, error) {
+func (c *IssueRequest) Create() (*IssueRequest, error) {
 	var err = database.DB.Table("issues").Create(&c).Error
 	if err != nil {
 		return &IssueRequest{}, err
