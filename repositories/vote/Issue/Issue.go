@@ -59,7 +59,7 @@ func GetAll(c *fiber.Ctx) (u []*vote.Issue, tRow, tPages int, error error) {
 
 	if searchIssue != "" {
 		qState = qState + " AND (lower(issue) like '%" + strings.ToLower(searchIssue) + "%'  "
-		qState = qState + " OR (lower(issue_title) like '%" + strings.ToLower(searchIssue) + "%' ) "
+		qState = qState + " OR lower(issue_title) like '%" + strings.ToLower(searchIssue) + "%' ) "
 	}
 
 	qStateTotal = qStateTotal + qState
