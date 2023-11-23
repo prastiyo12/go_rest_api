@@ -78,7 +78,7 @@ func GetAll(c *fiber.Ctx) (u []*vote.Issue, tRow, tPages int, error error) {
 	qState = qStatePage + qState
 	start := 0
 	if page > 1 {
-		start = page
+		start = page * rows
 		if tRow <= rows {
 			start = 0
 		}
