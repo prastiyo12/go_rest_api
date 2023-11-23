@@ -86,6 +86,7 @@ func Create(c *fiber.Ctx) error {
 
 	input.ID = uuid.New()
 	input.Status = true
+	input.CompanyId = user.CompanyId
 	input.CreatedAt = time.Now()
 	input.CreatedBy = user.ID
 
@@ -169,5 +170,23 @@ func Delete(c *fiber.Ctx) error {
 		payload Issue.IssueRequest
 	)
 	log.Println(payload)
+	return err
+}
+
+func GetIssue(c *fiber.Ctx) error {
+	data, totalRows, totalPages, err := Issue.GetAll(c)
+
+	if err != nil {
+		err := c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"code": fiber.StatusBadRequest, "message": err.Error()})
+		if err != nil {
+			return err
+		}
+		return err
+	}
+
+	err = c.Status(fiber.StatusOK).JSON(fiber.Map{"code": fiber.StatusOK, "message": "Data Stored.", "data": data, "totalRow": totalRows, "totalPages": totalPages})
+	if err != nil {
+		return err
+	}
 	return err
 }
