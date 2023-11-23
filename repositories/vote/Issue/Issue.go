@@ -84,8 +84,8 @@ func GetAll(c *fiber.Ctx) (u []*vote.Issue, tRow, tPages int, error error) {
 		}
 	}
 	tPages = int(math.Ceil(float64(tRow) / float64(rows)))
-	qState = qState + " OFFSET " + strconv.Itoa(start)
 	qState = qState + " LIMIT " + strconv.Itoa(rows)
+	qState = qState + " OFFSET " + strconv.Itoa(start)
 
 	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
 		return u, tRow, int(tPages), err
