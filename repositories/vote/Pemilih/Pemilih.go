@@ -34,8 +34,8 @@ type PemilihRequest struct {
 	// Longitude      float64   `json:"longitude"`
 	// Latitude       float64   `json:"latitude"`
 	// UserTypeId     uuid.UUID `json:"user_type_id"`
-	// UserId         uuid.UUID `json:"user_id"`
-	PathPhoto string `json:"path_photo"`
+	UserId    uuid.UUID `json:"user_id"`
+	PathPhoto string    `json:"path_photo"`
 	// Info1          string    `json:"info1"`
 	// Info2          string    `json:"info2"`
 	// Info3          string    `json:"info3"`

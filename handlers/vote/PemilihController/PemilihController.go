@@ -86,6 +86,7 @@ func Create(c *fiber.Ctx) error {
 
 	input.ID = uuid.New()
 	input.Status = true
+	input.UserId = user.ID
 	input.CompanyId = user.CompanyId
 	input.CreatedAt = time.Now()
 	input.CreatedBy = user.ID
