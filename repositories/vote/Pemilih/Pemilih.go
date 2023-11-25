@@ -15,62 +15,62 @@ import (
 )
 
 type PemilihRequest struct {
-	ID             uuid.UUID  `json:"id"`
-	CompanyId      uuid.UUID  `json:"company_id"`
-	TpsId          uuid.UUID  `json:"tps_id"`
-	Name           string     `json:"name"`
-	Phone          string     `json:"phone"`
-	IdentityNumber string     `json:"idvote_number"`
-	BirthDate      time.Time  `json:"birth_date"`
-	BirthPlace     string     `json:"birth_place"`
-	Gender         string     `json:"gender"`
-	Address        string     `json:"address"`
-	ProvinceId     uuid.UUID  `json:"province_id"`
-	CityId         uuid.UUID  `json:"city_id"`
-	DistrictId     uuid.UUID  `json:"district_id"`
-	VillageId      uuid.UUID  `json:"village_id"`
-	Rt             string     `json:"rt"`
-	Rw             string     `json:"rw"`
-	Longitude      float64    `json:"longitude"`
-	Latitude       float64    `json:"latitude"`
-	UserTypeId     uuid.UUID  `json:"user_type_id"`
-	UserId         uuid.UUID  `json:"user_id"`
-	PathPhoto      string     `json:"path_photo"`
-	Info1          string     `json:"info1"`
-	Info2          string     `json:"info2"`
-	Info3          string     `json:"info3"`
-	Status         *bool      `json:"status"`
-	CreatedBy      uuid.UUID  `json:"created_by"`
-	CreatedAt      *time.Time `json:"created_at"`
+	ID             uuid.UUID `json:"id"`
+	CompanyId      uuid.UUID `json:"company_id"`
+	TpsId          uuid.UUID `json:"tps_id"`
+	Name           string    `json:"name"`
+	Phone          string    `json:"phone"`
+	IdentityNumber string    `json:"idvote_number"`
+	BirthDate      time.Time `json:"birth_date"`
+	BirthPlace     string    `json:"birth_place"`
+	Gender         string    `json:"gender"`
+	Address        string    `json:"address"`
+	ProvinceId     uuid.UUID `json:"province_id"`
+	CityId         uuid.UUID `json:"city_id"`
+	DistrictId     uuid.UUID `json:"district_id"`
+	VillageId      uuid.UUID `json:"village_id"`
+	Rt             string    `json:"rt"`
+	Rw             string    `json:"rw"`
+	Longitude      float64   `json:"longitude"`
+	Latitude       float64   `json:"latitude"`
+	UserTypeId     uuid.UUID `json:"user_type_id"`
+	UserId         uuid.UUID `json:"user_id"`
+	PathPhoto      string    `json:"path_photo"`
+	Info1          string    `json:"info1"`
+	Info2          string    `json:"info2"`
+	Info3          string    `json:"info3"`
+	Status         bool      `json:"status"`
+	CreatedBy      uuid.UUID `json:"created_by"`
+	CreatedAt      time.Time `json:"created_at"`
 }
 
 type PemilihUpdateRequest struct {
-	CompanyId    uuid.UUID  `json:"company_id"`
-	TpsId        uuid.UUID  `json:"tps_id"`
-	Name         string     `json:"name"`
-	Phone        string     `json:"phone"`
-	IdvoteNumber string     `json:"idvote_number"`
-	BirthDate    time.Time  `json:"birth_date"`
-	BirthPlace   string     `json:"birth_place"`
-	Gender       string     `json:"gender"`
-	Address      string     `json:"address"`
-	ProvinceId   uuid.UUID  `json:"province_id"`
-	CityId       uuid.UUID  `json:"city_id"`
-	DistrictId   uuid.UUID  `json:"district_id"`
-	VillageId    uuid.UUID  `json:"village_id"`
-	Rt           string     `json:"rt"`
-	Rw           string     `json:"rw"`
-	Longitude    float64    `json:"longitude"`
-	Latitude     float64    `json:"latitude"`
-	UserTypeId   uuid.UUID  `json:"user_type_id"`
-	UserId       uuid.UUID  `json:"user_id"`
-	PathPhoto    string     `json:"path_photo"`
-	Info1        string     `json:"info1"`
-	Info2        string     `json:"info2"`
-	Info3        string     `json:"info3"`
-	Status       *bool      `json:"status"`
-	UpdatedBy    uuid.UUID  `json:"updated_by"`
-	UpdatedAt    *time.Time `json:"updated_at"`
+	CompanyId    uuid.UUID `json:"company_id"`
+	TpsId        uuid.UUID `json:"tps_id"`
+	Name         string    `json:"name"`
+	Phone        string    `json:"phone"`
+	IdvoteNumber string    `json:"idvote_number"`
+	BirthDate    time.Time `json:"birth_date"`
+	BirthPlace   string    `json:"birth_place"`
+	Gender       string    `json:"gender"`
+	Address      string    `json:"address"`
+	ProvinceId   uuid.UUID `json:"province_id"`
+	CityId       uuid.UUID `json:"city_id"`
+	DistrictId   uuid.UUID `json:"district_id"`
+	VillageId    uuid.UUID `json:"village_id"`
+	Rt           string    `json:"rt"`
+	Rw           string    `json:"rw"`
+	Longitude    float64   `json:"longitude"`
+	Latitude     float64   `json:"latitude"`
+	UserTypeId   uuid.UUID `json:"user_type_id"`
+	UserId       uuid.UUID `json:"user_id"`
+	PathPhoto    string    `json:"path_photo"`
+	Info1        string    `json:"info1"`
+	Info2        string    `json:"info2"`
+	Info3        string    `json:"info3"`
+	Status       bool      `json:"status"`
+	UpdatedBy    uuid.UUID `json:"updated_by"`
+	UpdatedAt    time.Time `json:"updated_at"`
 }
 
 type PemilihResponse struct {
@@ -184,7 +184,7 @@ func GetDataByID(id string) (c *vote.Pemilih, err error) {
 	return c, nil
 }
 
-func (c *PemilihRequest) Store() (*PemilihRequest, error) {
+func (c *PemilihRequest) Create() (*PemilihRequest, error) {
 	var err = database.DB.Table("pemilihs").Create(&c).Error
 	if err != nil {
 		return &PemilihRequest{}, err
