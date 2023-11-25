@@ -21,56 +21,56 @@ type PemilihRequest struct {
 	Name           string    `json:"name"`
 	Phone          string    `json:"phone"`
 	IdentityNumber string    `json:"identity_number"`
-	BirthDate      time.Time `json:"birth_date"`
-	BirthPlace     string    `json:"birth_place"`
-	Gender         string    `json:"gender"`
-	Address        string    `json:"address"`
-	ProvinceId     uuid.UUID `json:"province_id"`
-	CityId         uuid.UUID `json:"city_id"`
-	DistrictId     uuid.UUID `json:"district_id"`
-	VillageId      uuid.UUID `json:"village_id"`
-	Rt             string    `json:"rt"`
-	Rw             string    `json:"rw"`
-	Longitude      float64   `json:"longitude"`
-	Latitude       float64   `json:"latitude"`
-	UserTypeId     uuid.UUID `json:"user_type_id"`
-	UserId         uuid.UUID `json:"user_id"`
-	PathPhoto      string    `json:"path_photo"`
-	Info1          string    `json:"info1"`
-	Info2          string    `json:"info2"`
-	Info3          string    `json:"info3"`
-	Status         bool      `json:"status"`
-	CreatedBy      uuid.UUID `json:"created_by"`
-	CreatedAt      time.Time `json:"created_at"`
+	// BirthDate      time.Time `json:"birth_date"`
+	// BirthPlace     string    `json:"birth_place"`
+	// Gender         string    `json:"gender"`
+	// Address        string    `json:"address"`
+	// ProvinceId     uuid.UUID `json:"province_id"`
+	CityId     uuid.UUID `json:"city_id"`
+	DistrictId uuid.UUID `json:"district_id"`
+	VillageId  uuid.UUID `json:"village_id"`
+	// Rt             string    `json:"rt"`
+	// Rw             string    `json:"rw"`
+	// Longitude      float64   `json:"longitude"`
+	// Latitude       float64   `json:"latitude"`
+	// UserTypeId     uuid.UUID `json:"user_type_id"`
+	// UserId         uuid.UUID `json:"user_id"`
+	PathPhoto string `json:"path_photo"`
+	// Info1          string    `json:"info1"`
+	// Info2          string    `json:"info2"`
+	// Info3          string    `json:"info3"`
+	Status    bool      `json:"status"`
+	CreatedBy uuid.UUID `json:"created_by"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type PemilihUpdateRequest struct {
-	CompanyId    uuid.UUID `json:"company_id"`
-	TpsId        uuid.UUID `json:"tps_id"`
-	Name         string    `json:"name"`
-	Phone        string    `json:"phone"`
-	IdvoteNumber string    `json:"idvote_number"`
-	BirthDate    time.Time `json:"birth_date"`
-	BirthPlace   string    `json:"birth_place"`
-	Gender       string    `json:"gender"`
-	Address      string    `json:"address"`
-	ProvinceId   uuid.UUID `json:"province_id"`
-	CityId       uuid.UUID `json:"city_id"`
-	DistrictId   uuid.UUID `json:"district_id"`
-	VillageId    uuid.UUID `json:"village_id"`
-	Rt           string    `json:"rt"`
-	Rw           string    `json:"rw"`
-	Longitude    float64   `json:"longitude"`
-	Latitude     float64   `json:"latitude"`
-	UserTypeId   uuid.UUID `json:"user_type_id"`
-	UserId       uuid.UUID `json:"user_id"`
-	PathPhoto    string    `json:"path_photo"`
-	Info1        string    `json:"info1"`
-	Info2        string    `json:"info2"`
-	Info3        string    `json:"info3"`
-	Status       bool      `json:"status"`
-	UpdatedBy    uuid.UUID `json:"updated_by"`
-	UpdatedAt    time.Time `json:"updated_at"`
+	CompanyId      uuid.UUID `json:"company_id"`
+	TpsId          uuid.UUID `json:"tps_id"`
+	Name           string    `json:"name"`
+	Phone          string    `json:"phone"`
+	IdentityNumber string    `json:"identity_number"`
+	// BirthDate    time.Time `json:"birth_date"`
+	// BirthPlace   string    `json:"birth_place"`
+	// Gender       string    `json:"gender"`
+	// Address      string    `json:"address"`
+	// ProvinceId   uuid.UUID `json:"province_id"`
+	CityId     uuid.UUID `json:"city_id"`
+	DistrictId uuid.UUID `json:"district_id"`
+	VillageId  uuid.UUID `json:"village_id"`
+	// Rt           string    `json:"rt"`
+	// Rw           string    `json:"rw"`
+	// Longitude    float64   `json:"longitude"`
+	// Latitude     float64   `json:"latitude"`
+	// UserTypeId   uuid.UUID `json:"user_type_id"`
+	// UserId       uuid.UUID `json:"user_id"`
+	PathPhoto string `json:"path_photo"`
+	// Info1        string    `json:"info1"`
+	// Info2        string    `json:"info2"`
+	// Info3        string    `json:"info3"`
+	Status    bool      `json:"status"`
+	UpdatedBy uuid.UUID `json:"updated_by"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 type PemilihResponse struct {
@@ -82,29 +82,32 @@ type PemilihResponse struct {
 	Name           string    `json:"name"`
 	Phone          string    `json:"phone"`
 	IdentityNumber string    `json:"identity_number"`
-	BirthDate      time.Time `json:"birth_date"`
-	BirthPlace     string    `json:"birth_place"`
-	Gender         string    `json:"gender"`
-	Address        string    `json:"address"`
-	ProvinceId     uuid.UUID `json:"province_id"`
-	CityId         uuid.UUID `json:"city_id"`
-	DistrictId     uuid.UUID `json:"district_id"`
-	VillageId      uuid.UUID `json:"village_id"`
-	Rt             string    `json:"rt"`
-	Rw             string    `json:"rw"`
-	Longitude      float64   `json:"longitude"`
-	Latitude       float64   `json:"latitude"`
-	UserTypeId     uuid.UUID `json:"user_type_id"`
-	UserId         uuid.UUID `json:"user_id"`
-	PathPhoto      string    `json:"path_photo"`
-	Info1          string    `json:"info1"`
-	Info2          string    `json:"info2"`
-	Info3          string    `json:"info3"`
-	Status         bool      `json:"status"`
-	CreatedBy      uuid.UUID `json:"created_by"`
-	UpdatedBy      uuid.UUID `json:"updated_by"`
-	CreatedAt      time.Time `json:"created_at"`
-	UpdatedAt      time.Time `json:"updated_at"`
+	// BirthDate      time.Time `json:"birth_date"`
+	// BirthPlace     string    `json:"birth_place"`
+	// Gender         string    `json:"gender"`
+	// Address        string    `json:"address"`
+	// ProvinceId     uuid.UUID `json:"province_id"`
+	CityId       uuid.UUID `json:"city_id"`
+	City         string    `json:"city"`
+	DistrictId   uuid.UUID `json:"district_id"`
+	District     string    `json:"district"`
+	VillageId    uuid.UUID `json:"village_id"`
+	UrbanVillage string    `json:"urban_village"`
+	// Rt             string    `json:"rt"`
+	// Rw             string    `json:"rw"`
+	// Longitude      float64   `json:"longitude"`
+	// Latitude       float64   `json:"latitude"`
+	// UserTypeId     uuid.UUID `json:"user_type_id"`
+	// UserId         uuid.UUID `json:"user_id"`
+	PathPhoto string `json:"path_photo"`
+	// Info1          string    `json:"info1"`
+	// Info2          string    `json:"info2"`
+	// Info3          string    `json:"info3"`
+	Status    bool      `json:"status"`
+	CreatedBy uuid.UUID `json:"created_by"`
+	UpdatedBy uuid.UUID `json:"updated_by"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 func GetAll(c *fiber.Ctx) (u []*PemilihResponse, tRow, tPages int, error error) {
@@ -119,11 +122,15 @@ func GetAll(c *fiber.Ctx) (u []*PemilihResponse, tRow, tPages int, error error) 
 	searchPhone := c.Query("phone")
 	searchIdentityNumber := c.Query("identity_number")
 	searchGender := c.Query("gender")
-	qStatePage := "SELECT c.*, t.code as tps_code, t.name as tps_name "
+	qStatePage := "SELECT c.*, t.code as tps_code, t.name as tps_name, address_city.city,address_district.district, address_village.urban_village"
 
 	qStateTotal := "SELECT COUNT(*) as total_data "
 
-	qState := " FROM pemilihs c left join tps t on c.tps_id = t.id WHERE c.company_id = '" + user.CompanyId.String() + "' AND c.deleted_at is NULL"
+	qState := " FROM pemilihs c left join tps t on c.tps_id = t.id "
+	qState = qState + " left join address_city  on c.city_id = address_city.id"
+	qState = qState + " left join address_district  on c.district_id = address_district.id"
+	qState = qState + " left join address_village  on c.village_id = address_village.id"
+	qState = qState + " WHERE c.company_id = '" + user.CompanyId.String() + "' AND c.deleted_at is NULL"
 
 	if searchGender != "" {
 		qState = qState + " AND lower(c.gender) = '" + strings.ToLower(searchGender) + "'"
