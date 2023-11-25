@@ -20,7 +20,7 @@ type PemilihRequest struct {
 	TpsId          uuid.UUID `json:"tps_id"`
 	Name           string    `json:"name"`
 	Phone          string    `json:"phone"`
-	IdentityNumber string    `json:"idvote_number"`
+	IdentityNumber string    `json:"identity_number"`
 	BirthDate      time.Time `json:"birth_date"`
 	BirthPlace     string    `json:"birth_place"`
 	Gender         string    `json:"gender"`
@@ -123,7 +123,7 @@ func GetAll(c *fiber.Ctx) (u []*PemilihResponse, tRow, tPages int, error error) 
 
 	qStateTotal := "SELECT COUNT(*) as total_data "
 
-	qState := " FROM pemilihs c left join tps t on c.tps_id = t.id WHERE c.company_id = '" + user.CompanyId.String() + "' c.deleted_at is NULL"
+	qState := " FROM pemilihs c left join tps t on c.tps_id = t.id WHERE c.company_id = '" + user.CompanyId.String() + "' AND c.deleted_at is NULL"
 
 	if searchGender != "" {
 		qState = qState + " AND lower(c.gender) = '" + strings.ToLower(searchGender) + "'"
