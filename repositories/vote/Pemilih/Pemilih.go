@@ -127,9 +127,9 @@ func GetAll(c *fiber.Ctx) (u []*PemilihResponse, tRow, tPages int, error error) 
 	qStateTotal := "SELECT COUNT(*) as total_data "
 
 	qState := " FROM pemilihs c left join tps t on c.tps_id = t.id "
-	qState = qState + " left join address_city  on c.city_id = address_city.id"
-	qState = qState + " left join address_district  on c.district_id = address_district.id"
-	qState = qState + " left join address_village  on c.village_id = address_village.id"
+	qState = qState + " left join address_cities  on c.city_id = address_city.id"
+	qState = qState + " left join address_districts  on c.district_id = address_district.id"
+	qState = qState + " left join address_villages  on c.village_id = address_village.id"
 	qState = qState + " WHERE c.company_id = '" + user.CompanyId.String() + "' AND c.deleted_at is NULL"
 
 	if searchGender != "" {
