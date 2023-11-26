@@ -77,7 +77,7 @@ func GetAll(c *fiber.Ctx) (u []*PemiluResponse, tRow, tPages int, error error) {
 
 	qStateTotal := "SELECT COUNT(*) as total_data "
 
-	qState := " FROM pemilu obj left join tps t on obj.tps_id = t.id "
+	qState := " FROM pemilus obj left join tps t on obj.tps_id = t.id "
 	qState = qState + " WHERE obj.company_id = '" + user.CompanyId.String() + "' AND obj.deleted_at is NULL"
 
 	// if searchGender != "" {
