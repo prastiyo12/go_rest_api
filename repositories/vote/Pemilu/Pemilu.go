@@ -73,7 +73,7 @@ func GetAll(c *fiber.Ctx) (u []*PemiluResponse, tRow, tPages int, error error) {
 	// searchPhone := c.Query("phone")
 	// searchIdentityNumber := c.Query("identity_number")
 	// searchGender := c.Query("gender")
-	qStatePage := "SELECT obj.*, t.code as tps_code, t.name as tps_name, DATE(obj.created_at) as created_date "
+	qStatePage := "SELECT obj.*, t.code as tps_code, t.name as tps_name, to_char(obj.created_at,'YYYY-MM-DD HH24:MI:SS') as created_date "
 
 	qStateTotal := "SELECT COUNT(*) as total_data "
 
