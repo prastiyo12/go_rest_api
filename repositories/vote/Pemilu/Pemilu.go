@@ -24,7 +24,7 @@ type PemiluRequest struct {
 	PathPhoto          string    `json:"path_photo"`
 	Longitude          float64   `json:"longitude"`
 	Latitude           float64   `json:"latitude"`
-	Status             bool      `json:"not null;default:false"`
+	Status             bool      `json:"status"`
 	CreatedBy          uuid.UUID `json:"created_by"`
 	CreatedAt          time.Time `json:"created_at"`
 }
@@ -39,7 +39,7 @@ type PemiluUpdateRequest struct {
 	PathPhoto          string    `json:"path_photo"`
 	Longitude          float64   `json:"longitude"`
 	Latitude           float64   `json:"latitude"`
-	Status             bool      `json:"not null;default:false"`
+	Status             bool      `json:"status"`
 	UpdatedBy          uuid.UUID `json:"updated_by"`
 	UpdatedAt          time.Time `json:"updated_at"`
 }
@@ -56,7 +56,7 @@ type PemiluResponse struct {
 	PathPhoto          string    `json:"path_photo"`
 	Longitude          float64   `json:"longitude"`
 	Latitude           float64   `json:"latitude"`
-	Status             bool      `json:"not null;default:false"`
+	Status             bool      `json:"status"`
 	CreatedBy          uuid.UUID `json:"created_by"`
 	CreatedAt          time.Time `json:"created_at"`
 }
