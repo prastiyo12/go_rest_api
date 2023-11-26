@@ -58,7 +58,7 @@ type PemiluResponse struct {
 	Latitude           float64   `json:"latitude"`
 	Status             bool      `json:"status"`
 	CreatedBy          uuid.UUID `json:"created_by"`
-	CreatedAt          time.Time `json:"created_at"`
+	CreatedDate        string    `json:"created_date"`
 }
 
 func GetAll(c *fiber.Ctx) (u []*PemiluResponse, tRow, tPages int, error error) {
@@ -73,7 +73,7 @@ func GetAll(c *fiber.Ctx) (u []*PemiluResponse, tRow, tPages int, error error) {
 	// searchPhone := c.Query("phone")
 	// searchIdentityNumber := c.Query("identity_number")
 	// searchGender := c.Query("gender")
-	qStatePage := "SELECT obj.*, t.code as tps_code, t.name as tps_name "
+	qStatePage := "SELECT obj.*, t.code as tps_code, t.name as tps_name, DATE(obj.created_at) as created_date "
 
 	qStateTotal := "SELECT COUNT(*) as total_data "
 
