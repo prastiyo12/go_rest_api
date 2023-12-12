@@ -22,9 +22,14 @@ func GetProvince(c *fiber.Ctx) (u []*core.AddressProvince, error error) {
 
 func GetCity(c *fiber.Ctx) (u []*core.AddressCity, error error) {
 	paramsID := c.Query("province_id")
-	qState := "SELECT * FROM address_cities "
+	search := c.Query("search")
+	qState := "SELECT * FROM address_cities WHERE city is not null"
 	if paramsID != "" {
-		qState = qState + "WHERE province_id = '" + paramsID + "'"
+		qState = qState + " AND province_id = '" + paramsID + "'"
+	}
+
+	if search != "" {
+		qState = qState + " AND city like '%" + search + "%'"
 	}
 	qState = qState + " ORDER BY city ASC"
 	err := database.DB.Raw(qState).Scan(&u).Error
