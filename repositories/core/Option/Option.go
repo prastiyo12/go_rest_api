@@ -43,9 +43,13 @@ func GetCity(c *fiber.Ctx) (u []*core.AddressCity, error error) {
 
 func GetDistrict(c *fiber.Ctx) (u []*core.AddressDistrict, error error) {
 	paramsID := c.Query("city_id")
+	search := c.Query("filter")
 	qState := "SELECT * FROM address_districts "
 	if paramsID != "" {
 		qState = qState + "WHERE city_id = '" + paramsID + "'"
+	}
+	if search != "" {
+		qState = qState + " AND lower(district) = '" + strings.ToLower(search) + "'"
 	}
 	qState = qState + " ORDER BY district ASC"
 
@@ -59,9 +63,13 @@ func GetDistrict(c *fiber.Ctx) (u []*core.AddressDistrict, error error) {
 
 func GetVillage(c *fiber.Ctx) (u []*core.AddressVillage, error error) {
 	paramsID := c.Query("district_id")
+	search := c.Query("filter")
 	qState := "SELECT * FROM address_villages "
 	if paramsID != "" {
 		qState = qState + "WHERE district_id = '" + paramsID + "'"
+	}
+	if search != "" {
+		qState = qState + " AND lower(urban_village) = '" + strings.ToLower(search) + "'"
 	}
 	qState = qState + " ORDER BY urban_village ASC"
 
