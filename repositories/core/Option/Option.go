@@ -30,7 +30,7 @@ func GetCity(c *fiber.Ctx) (u []*core.AddressCity, error error) {
 	}
 
 	if search != "" {
-		qState = qState + " AND lower(city) like '%" + strings.ToLower(search) + "%'"
+		qState = qState + " AND lower(city) = '" + strings.ToLower(search) + "'"
 	}
 	qState = qState + " ORDER BY city ASC"
 	err := database.DB.Raw(qState).Scan(&u).Error
