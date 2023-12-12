@@ -3,6 +3,7 @@ package Option
 import (
 	"go_rest_api/database"
 	"go_rest_api/models/core"
+	"strings"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -22,14 +23,14 @@ func GetProvince(c *fiber.Ctx) (u []*core.AddressProvince, error error) {
 
 func GetCity(c *fiber.Ctx) (u []*core.AddressCity, error error) {
 	paramsID := c.Query("province_id")
-	search := c.Query("search")
+	search := c.Query("filter")
 	qState := "SELECT * FROM address_cities WHERE city is not null"
 	if paramsID != "" {
 		qState = qState + " AND province_id = '" + paramsID + "'"
 	}
 
 	if search != "" {
-		qState = qState + " AND city like '%" + search + "%'"
+		qState = qState + " AND lower(city) like '%" + strings.ToLower(search) + "%'"
 	}
 	qState = qState + " ORDER BY city ASC"
 	err := database.DB.Raw(qState).Scan(&u).Error
