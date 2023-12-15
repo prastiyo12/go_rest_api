@@ -14,6 +14,7 @@ import (
 	"go_rest_api/handlers/vote/IssueController"
 	"go_rest_api/handlers/vote/PemilihController"
 	"go_rest_api/handlers/vote/PemiluController"
+	"go_rest_api/handlers/vote/SummaryController"
 	"go_rest_api/handlers/vote/TpsController"
 
 	"go_rest_api/middleware"
@@ -45,6 +46,7 @@ func SetupRoutes(app *fiber.App) {
 	//login system
 	v1.Get("/me", UserController.GetUser)
 	v1.Get("/menu", MenuController.GetMenu)
+	v1.Get("/summary", SummaryController.GetSummary)
 	v1.Post("/logout", LoginController.LogoutUser)
 
 	//campaign
