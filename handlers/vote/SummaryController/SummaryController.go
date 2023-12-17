@@ -39,7 +39,7 @@ func GetSummary(c *fiber.Ctx) error {
 		return err
 	}
 
-	err = c.Status(fiber.StatusOK).JSON(fiber.Map{"code": fiber.StatusOK, "message": "Data Stored.", "data": data, "totalRow": totalRows, "totalPages": totalPages})
+	err = c.Status(fiber.StatusOK).JSON(fiber.Map{"code": fiber.StatusOK, "message": "Data Stored.", "data": res})
 	if err != nil {
 		return err
 	}
