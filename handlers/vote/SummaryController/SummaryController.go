@@ -18,16 +18,17 @@ import (
 // @Router			/api/v1/dashboard [get]
 func GetSummary(c *fiber.Ctx) error {
 	totalTps, err := Dashboard.GetTotalTps(c)
-	totalPemilih, err := Dashboard.GetTotalPemilih(c)
-	totalPemilihCalge, err := Dashboard.GetVoteResult(c)
+	totalPemilih, _ := Dashboard.GetTotalPemilih(c)
+	totalPemilihCalge, _ := Dashboard.GetVoteResult(c)
 
 	res := Dashboard.SummaryResponse{}
 	res.TotalTps = totalTps.TotalTps
 	res.TotalPemilih = totalPemilih.TotalPemilih
 	res.TotalPemilihCaleg = totalPemilihCalge.TotalPemilihCaleg
+	res.Companies, _ = Dashboard.GetCompany(c)
 
-	totalP, err := strconv.Atoi(totalPemilih.TotalPemilih)
-	totalPC, err := strconv.Atoi(totalPemilihCalge.TotalPemilihCaleg)
+	totalP, _ := strconv.Atoi(totalPemilih.TotalPemilih)
+	totalPC, _ := strconv.Atoi(totalPemilihCalge.TotalPemilihCaleg)
 	tPC := (totalP - totalPC)
 	res.TotalPesaing = strconv.Itoa(tPC)
 
