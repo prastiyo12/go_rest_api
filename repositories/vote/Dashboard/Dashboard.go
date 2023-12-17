@@ -10,11 +10,12 @@ import (
 )
 
 type SummaryResponse struct {
-	TotalTps          string     `json:"total_tps"`
-	TotalPemilih      string     `json:"total_pemilih"`
-	TotalPemilihCaleg string     `json:"total_pemilih_caleg"`
-	TotalPesaing      string     `json:"total_pesaing"`
-	Companies         CompanyRes `json:"companies"`
+	TotalTps          string `json:"total_tps"`
+	TotalPemilih      string `json:"total_pemilih"`
+	TotalPemilihCaleg string `json:"total_pemilih_caleg"`
+	TotalPesaing      string `json:"total_pesaing"`
+	CompanyName       string `json:"company_name"`
+	PathPhoto         string `json:"path_photo"`
 }
 
 type TotalTpsRes struct {
