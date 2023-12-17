@@ -10,13 +10,13 @@ import (
 )
 
 type SummaryResponse struct {
-	TotalTps          string    `json:"total_tps"`
-	TotalPemilih      string    `json:"total_pemilih"`
-	TotalPemilihCaleg string    `json:"total_pemilih_caleg"`
-	TotalPesaing      string    `json:"total_pesaing"`
-	CompanyName       string    `json:"company_name"`
-	PathPhoto         string    `json:"path_photo"`
-	News              []NewsRes `json:"news"`
+	TotalTps          string     `json:"total_tps"`
+	TotalPemilih      string     `json:"total_pemilih"`
+	TotalPemilihCaleg string     `json:"total_pemilih_caleg"`
+	TotalPesaing      string     `json:"total_pesaing"`
+	CompanyName       string     `json:"company_name"`
+	PathPhoto         string     `json:"path_photo"`
+	News              []*NewsRes `json:"news"`
 }
 
 type TotalTpsRes struct {
@@ -83,7 +83,7 @@ func GetCompany(c *fiber.Ctx) (u CompanyRes, error error) {
 	return u, nil
 }
 
-func GetNews(c *fiber.Ctx) (u []NewsRes, error error) {
+func GetNews(c *fiber.Ctx) (u []*NewsRes, error error) {
 	user := c.Locals("user").(core.UserResponse)
 	qState := "SELECT * FROM news where company_id = '" + user.CompanyId.String() + "'"
 	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
