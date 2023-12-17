@@ -10,12 +10,13 @@ import (
 )
 
 type SummaryResponse struct {
-	TotalTps          string `json:"total_tps"`
-	TotalPemilih      string `json:"total_pemilih"`
-	TotalPemilihCaleg string `json:"total_pemilih_caleg"`
-	TotalPesaing      string `json:"total_pesaing"`
-	CompanyName       string `json:"company_name"`
-	PathPhoto         string `json:"path_photo"`
+	TotalTps          string    `json:"total_tps"`
+	TotalPemilih      string    `json:"total_pemilih"`
+	TotalPemilihCaleg string    `json:"total_pemilih_caleg"`
+	TotalPesaing      string    `json:"total_pesaing"`
+	CompanyName       string    `json:"company_name"`
+	PathPhoto         string    `json:"path_photo"`
+	News              []NewsRes `json:"news"`
 }
 
 type TotalTpsRes struct {
@@ -39,6 +40,11 @@ type CompanyRes struct {
 	Status    bool      `json:"status"`
 	UpdatedBy uuid.UUID `json:"updated_by"`
 	UpdatedAt time.Time `json:"updated_at"`
+}
+
+type NewsRes struct {
+	Title       string `json:"title"`
+	NewsContent string `json:"news_content"`
 }
 
 func GetTotalTps(c *fiber.Ctx) (u TotalTpsRes, error error) {
@@ -71,6 +77,15 @@ func GetVoteResult(c *fiber.Ctx) (u TotalPemilihCalegRes, error error) {
 func GetCompany(c *fiber.Ctx) (u CompanyRes, error error) {
 	user := c.Locals("user").(core.UserResponse)
 	qState := "SELECT * FROM companies where id = '" + user.CompanyId.String() + "'"
+	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
+		return u, err
+	}
+	return u, nil
+}
+
+func GetNews(c *fiber.Ctx) (u []NewsRes, error error) {
+	user := c.Locals("user").(core.UserResponse)
+	qState := "SELECT * FROM news where company_id = '" + user.CompanyId.String() + "'"
 	if err := database.DB.Raw(qState).Scan(&u).Error; err != nil {
 		return u, err
 	}

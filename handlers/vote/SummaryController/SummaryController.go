@@ -21,6 +21,7 @@ func GetSummary(c *fiber.Ctx) error {
 	totalPemilih, _ := Dashboard.GetTotalPemilih(c)
 	totalPemilihCalge, _ := Dashboard.GetVoteResult(c)
 	companies, _ := Dashboard.GetCompany(c)
+	news, _ := Dashboard.GetNews(c)
 
 	res := Dashboard.SummaryResponse{}
 	res.TotalTps = totalTps.TotalTps
@@ -28,6 +29,7 @@ func GetSummary(c *fiber.Ctx) error {
 	res.TotalPemilihCaleg = totalPemilihCalge.TotalPemilihCaleg
 	res.CompanyName = companies.Name
 	res.PathPhoto = companies.PathPhoto
+	res.News = news
 
 	totalP, _ := strconv.Atoi(totalPemilih.TotalPemilih)
 	totalPC, _ := strconv.Atoi(totalPemilihCalge.TotalPemilihCaleg)
