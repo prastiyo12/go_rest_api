@@ -20,10 +20,10 @@ type ProfileRequest struct {
 	BirthPlace     string    `json:"birth_place"`
 	Gender         string    `json:"gender"`
 	Address        string    `json:"address"`
-	ProvinceId     uuid.UUID `json:"province_id"`
-	CityId         uuid.UUID `json:"city_id"`
-	DistrictId     uuid.UUID `json:"district_id"`
-	VillageId      uuid.UUID `json:"village_id"`
+	ProvinceId     string    `json:"province_id"`
+	CityId         string    `json:"city_id"`
+	DistrictId     string    `json:"district_id"`
+	VillageId      string    `json:"village_id"`
 	Rt             string    `json:"rt"`
 	Rw             string    `json:"rw"`
 	UserTypeId     uuid.UUID `json:"user_type_id"`
@@ -45,10 +45,10 @@ type ProfileUpdateRequest struct {
 	BirthPlace     string    `json:"birth_place"`
 	Gender         string    `json:"gender"`
 	Address        string    `json:"address"`
-	ProvinceId     uuid.UUID `json:"province_id"`
-	CityId         uuid.UUID `json:"city_id"`
-	DistrictId     uuid.UUID `json:"district_id"`
-	VillageId      uuid.UUID `json:"village_id"`
+	ProvinceId     string    `json:"province_id"`
+	CityId         string    `json:"city_id"`
+	DistrictId     string    `json:"district_id"`
+	VillageId      string    `json:"village_id"`
 	Rt             string    `json:"rt"`
 	Rw             string    `json:"rw"`
 	UserTypeId     uuid.UUID `json:"user_type_id"`

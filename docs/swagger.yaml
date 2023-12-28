@@ -157,7 +157,11 @@ definitions:
         type: string
       issue_maker:
         type: string
+      issue_photo:
+        type: string
       issue_solution:
+        type: string
+      issue_title:
         type: string
       status:
         type: boolean
@@ -170,7 +174,11 @@ definitions:
         type: string
       issue_maker:
         type: string
+      issue_photo:
+        type: string
       issue_solution:
+        type: string
+      issue_title:
         type: string
       status:
         type: boolean
@@ -223,6 +231,97 @@ definitions:
       updated_at:
         type: string
     type: object
+  Pemilih.PemilihRequest:
+    properties:
+      city_id:
+        description: |-
+          BirthDate      time.Time `json:"birth_date"`
+          BirthPlace     string    `json:"birth_place"`
+          Gender         string    `json:"gender"`
+          Address        string    `json:"address"`
+          ProvinceId     uuid.UUID `json:"province_id"`
+        type: string
+      company_id:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        type: string
+      district_id:
+        type: string
+      id:
+        type: string
+      identity_number:
+        type: string
+      name:
+        type: string
+      path_photo:
+        type: string
+      phone:
+        type: string
+      status:
+        description: |-
+          Info1          string    `json:"info1"`
+          Info2          string    `json:"info2"`
+          Info3          string    `json:"info3"`
+        type: boolean
+      tps_id:
+        type: string
+      user_id:
+        description: |-
+          Rt             string    `json:"rt"`
+          Rw             string    `json:"rw"`
+          Longitude      float64   `json:"longitude"`
+          Latitude       float64   `json:"latitude"`
+          UserTypeId     uuid.UUID `json:"user_type_id"`
+        type: string
+      village_id:
+        type: string
+    type: object
+  Pemilih.PemilihUpdateRequest:
+    properties:
+      city_id:
+        description: |-
+          BirthDate    time.Time `json:"birth_date"`
+          BirthPlace   string    `json:"birth_place"`
+          Gender       string    `json:"gender"`
+          Address      string    `json:"address"`
+          ProvinceId   uuid.UUID `json:"province_id"`
+        type: string
+      company_id:
+        type: string
+      district_id:
+        type: string
+      identity_number:
+        type: string
+      name:
+        type: string
+      path_photo:
+        description: |-
+          Rt           string    `json:"rt"`
+          Rw           string    `json:"rw"`
+          Longitude    float64   `json:"longitude"`
+          Latitude     float64   `json:"latitude"`
+          UserTypeId   uuid.UUID `json:"user_type_id"`
+          UserId       uuid.UUID `json:"user_id"`
+        type: string
+      phone:
+        type: string
+      status:
+        description: |-
+          Info1        string    `json:"info1"`
+          Info2        string    `json:"info2"`
+          Info3        string    `json:"info3"`
+        type: boolean
+      tps_id:
+        type: string
+      updated_at:
+        type: string
+      updated_by:
+        type: string
+      village_id:
+        type: string
+    type: object
   Pemilu.PemiluRequest:
     properties:
       company_id:
@@ -232,12 +331,6 @@ definitions:
       created_by:
         type: string
       id:
-        type: string
-      info1:
-        type: string
-      info2:
-        type: string
-      info3:
         type: string
       latitude:
         type: number
@@ -261,12 +354,6 @@ definitions:
   Pemilu.PemiluUpdateRequest:
     properties:
       company_id:
-        type: string
-      info1:
-        type: string
-      info2:
-        type: string
-      info3:
         type: string
       latitude:
         type: number
@@ -454,42 +541,54 @@ definitions:
     type: object
   User.UserRequest:
     properties:
-      code:
+      activation_code:
+        type: string
+      company_id:
         type: string
       created_at:
         type: string
-      created_by:
+      email:
         type: string
-      dapil_id:
+      firebase_token:
         type: string
       id:
         type: string
       name:
         type: string
-      rw:
+      password:
+        type: string
+      phone:
+        type: string
+      photo:
+        type: string
+      role:
         type: string
       status:
         type: boolean
-      village_id:
-        type: string
     type: object
   User.UserUpdateRequest:
     properties:
-      code:
+      activation_code:
         type: string
-      dapil_id:
+      company_id:
+        type: string
+      email:
+        type: string
+      firebase_token:
         type: string
       name:
         type: string
-      rw:
+      password:
+        type: string
+      phone:
+        type: string
+      photo:
+        type: string
+      role:
         type: string
       status:
         type: boolean
       updated_at:
-        type: string
-      updated_by:
-        type: string
-      village_id:
         type: string
     type: object
   core.SignInInput:
@@ -528,7 +627,7 @@ definitions:
 externalDocs:
   description: OpenAPI
   url: https://swagger.io/resources/open-api/
-host: service.radanka.com
+host: localhost:3000
 info:
   contact:
     email: prastiyo.beka12@gmail.com
@@ -920,6 +1019,19 @@ paths:
       summary: Dapil Delete
       tags:
       - Dapil
+  /api/v1/dashboard:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Dashboard
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Summary
+      tags:
+      - Tps
   /api/v1/issue:
     get:
       consumes:
@@ -1214,6 +1326,106 @@ paths:
       summary: Village
       tags:
       - Option
+  /api/v1/pemilih:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Pemilih
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Pemilih
+      tags:
+      - Pemilih
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Pemilih
+      parameters:
+      - description: Pemilih Create
+        in: body
+        name: issue
+        required: true
+        schema:
+          $ref: '#/definitions/Pemilih.PemilihRequest'
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Pemilih Create
+      tags:
+      - Pemilih
+  /api/v1/pemilih/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Pemilih By ID
+      parameters:
+      - description: Pemilih ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Pemilih By ID
+      tags:
+      - Pemilih
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Pemilih
+      parameters:
+      - description: Issue Update
+        in: body
+        name: issue
+        required: true
+        schema:
+          $ref: '#/definitions/Pemilih.PemilihUpdateRequest'
+      - description: Issue ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Pemilih Update
+      tags:
+      - Pemilih
+  /api/v1/pemilih/delete/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Simpan data Pemilih
+      parameters:
+      - description: Pemilih Update
+        in: body
+        name: issue
+        required: true
+        schema:
+          $ref: '#/definitions/Pemilih.PemilihUpdateRequest'
+      - description: Pemilih ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Pemilih Delete
+      tags:
+      - Pemilih
   /api/v1/pemilu:
     get:
       consumes:
@@ -1315,6 +1527,18 @@ paths:
       tags:
       - Pemilu
   /api/v1/profile:
+    get:
+      consumes:
+      - application/json
+      description: Ambil data Profile
+      produces:
+      - application/json
+      responses: {}
+      security:
+      - ApiKeyAuth: []
+      summary: Profile
+      tags:
+      - Profile
     post:
       consumes:
       - application/json

@@ -18,7 +18,7 @@ import (
 //	@termsOfService	http://swagger.io/terms/
 //	@contact.name	API Support
 //	@contact.email	prastiyo.beka12@gmail.com
-//	@host			service.radanka.com
+//	@host			localhost:3000
 //	@BasePath		/api/v1
 
 //	@securitydefinitions.apikey	ApiKeyAuth

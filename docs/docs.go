@@ -615,6 +615,27 @@ const docTemplate = `{
                 "responses": {}
             }
         },
+        "/api/v1/dashboard": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Dashboard",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tps"
+                ],
+                "summary": "Summary",
+                "responses": {}
+            }
+        },
         "/api/v1/issue": {
             "get": {
                 "security": [
@@ -1077,6 +1098,163 @@ const docTemplate = `{
                 "responses": {}
             }
         },
+        "/api/v1/pemilih": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Pemilih",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pemilih"
+                ],
+                "summary": "Pemilih",
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Pemilih",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pemilih"
+                ],
+                "summary": "Pemilih Create",
+                "parameters": [
+                    {
+                        "description": "Pemilih Create",
+                        "name": "issue",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Pemilih.PemilihRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/pemilih/delete/{id}": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Pemilih",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pemilih"
+                ],
+                "summary": "Pemilih Delete",
+                "parameters": [
+                    {
+                        "description": "Pemilih Update",
+                        "name": "issue",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Pemilih.PemilihUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Pemilih ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/api/v1/pemilih/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Pemilih By ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pemilih"
+                ],
+                "summary": "Pemilih By ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Pemilih ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Simpan data Pemilih",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Pemilih"
+                ],
+                "summary": "Pemilih Update",
+                "parameters": [
+                    {
+                        "description": "Issue Update",
+                        "name": "issue",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Pemilih.PemilihUpdateRequest"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Issue ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
         "/api/v1/pemilu": {
             "get": {
                 "security": [
@@ -1235,6 +1413,25 @@ const docTemplate = `{
             }
         },
         "/api/v1/profile": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Ambil data Profile",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Profile",
+                "responses": {}
+            },
             "post": {
                 "security": [
                     {
@@ -2066,7 +2263,13 @@ const docTemplate = `{
                 "issue_maker": {
                     "type": "string"
                 },
+                "issue_photo": {
+                    "type": "string"
+                },
                 "issue_solution": {
+                    "type": "string"
+                },
+                "issue_title": {
                     "type": "string"
                 },
                 "status": {
@@ -2086,7 +2289,13 @@ const docTemplate = `{
                 "issue_maker": {
                     "type": "string"
                 },
+                "issue_photo": {
+                    "type": "string"
+                },
                 "issue_solution": {
+                    "type": "string"
+                },
+                "issue_title": {
                     "type": "string"
                 },
                 "status": {
@@ -2167,6 +2376,100 @@ const docTemplate = `{
                 }
             }
         },
+        "Pemilih.PemilihRequest": {
+            "type": "object",
+            "properties": {
+                "city_id": {
+                    "description": "BirthDate      time.Time ` + "`" + `json:\"birth_date\"` + "`" + `\nBirthPlace     string    ` + "`" + `json:\"birth_place\"` + "`" + `\nGender         string    ` + "`" + `json:\"gender\"` + "`" + `\nAddress        string    ` + "`" + `json:\"address\"` + "`" + `\nProvinceId     uuid.UUID ` + "`" + `json:\"province_id\"` + "`" + `",
+                    "type": "string"
+                },
+                "company_id": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "district_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "identity_number": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path_photo": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Info1          string    ` + "`" + `json:\"info1\"` + "`" + `\nInfo2          string    ` + "`" + `json:\"info2\"` + "`" + `\nInfo3          string    ` + "`" + `json:\"info3\"` + "`" + `",
+                    "type": "boolean"
+                },
+                "tps_id": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "description": "Rt             string    ` + "`" + `json:\"rt\"` + "`" + `\nRw             string    ` + "`" + `json:\"rw\"` + "`" + `\nLongitude      float64   ` + "`" + `json:\"longitude\"` + "`" + `\nLatitude       float64   ` + "`" + `json:\"latitude\"` + "`" + `\nUserTypeId     uuid.UUID ` + "`" + `json:\"user_type_id\"` + "`" + `",
+                    "type": "string"
+                },
+                "village_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "Pemilih.PemilihUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "city_id": {
+                    "description": "BirthDate    time.Time ` + "`" + `json:\"birth_date\"` + "`" + `\nBirthPlace   string    ` + "`" + `json:\"birth_place\"` + "`" + `\nGender       string    ` + "`" + `json:\"gender\"` + "`" + `\nAddress      string    ` + "`" + `json:\"address\"` + "`" + `\nProvinceId   uuid.UUID ` + "`" + `json:\"province_id\"` + "`" + `",
+                    "type": "string"
+                },
+                "company_id": {
+                    "type": "string"
+                },
+                "district_id": {
+                    "type": "string"
+                },
+                "identity_number": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path_photo": {
+                    "description": "Rt           string    ` + "`" + `json:\"rt\"` + "`" + `\nRw           string    ` + "`" + `json:\"rw\"` + "`" + `\nLongitude    float64   ` + "`" + `json:\"longitude\"` + "`" + `\nLatitude     float64   ` + "`" + `json:\"latitude\"` + "`" + `\nUserTypeId   uuid.UUID ` + "`" + `json:\"user_type_id\"` + "`" + `\nUserId       uuid.UUID ` + "`" + `json:\"user_id\"` + "`" + `",
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Info1        string    ` + "`" + `json:\"info1\"` + "`" + `\nInfo2        string    ` + "`" + `json:\"info2\"` + "`" + `\nInfo3        string    ` + "`" + `json:\"info3\"` + "`" + `",
+                    "type": "boolean"
+                },
+                "tps_id": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                },
+                "village_id": {
+                    "type": "string"
+                }
+            }
+        },
         "Pemilu.PemiluRequest": {
             "type": "object",
             "properties": {
@@ -2180,15 +2483,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "id": {
-                    "type": "string"
-                },
-                "info1": {
-                    "type": "string"
-                },
-                "info2": {
-                    "type": "string"
-                },
-                "info3": {
                     "type": "string"
                 },
                 "latitude": {
@@ -2224,15 +2518,6 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "company_id": {
-                    "type": "string"
-                },
-                "info1": {
-                    "type": "string"
-                },
-                "info2": {
-                    "type": "string"
-                },
-                "info3": {
                     "type": "string"
                 },
                 "latitude": {
@@ -2518,16 +2803,19 @@ const docTemplate = `{
         "User.UserRequest": {
             "type": "object",
             "properties": {
-                "code": {
+                "activation_code": {
+                    "type": "string"
+                },
+                "company_id": {
                     "type": "string"
                 },
                 "created_at": {
                     "type": "string"
                 },
-                "created_by": {
+                "email": {
                     "type": "string"
                 },
-                "dapil_id": {
+                "firebase_token": {
                     "type": "string"
                 },
                 "id": {
@@ -2536,42 +2824,57 @@ const docTemplate = `{
                 "name": {
                     "type": "string"
                 },
-                "rw": {
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "photo": {
+                    "type": "string"
+                },
+                "role": {
                     "type": "string"
                 },
                 "status": {
                     "type": "boolean"
-                },
-                "village_id": {
-                    "type": "string"
                 }
             }
         },
         "User.UserUpdateRequest": {
             "type": "object",
             "properties": {
-                "code": {
+                "activation_code": {
                     "type": "string"
                 },
-                "dapil_id": {
+                "company_id": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firebase_token": {
                     "type": "string"
                 },
                 "name": {
                     "type": "string"
                 },
-                "rw": {
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "photo": {
+                    "type": "string"
+                },
+                "role": {
                     "type": "string"
                 },
                 "status": {
                     "type": "boolean"
                 },
                 "updated_at": {
-                    "type": "string"
-                },
-                "updated_by": {
-                    "type": "string"
-                },
-                "village_id": {
                     "type": "string"
                 }
             }
@@ -2640,7 +2943,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "",
-	Host:             "service.radanka.com",
+	Host:             "localhost:3000",
 	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "API Documentation",

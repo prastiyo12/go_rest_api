@@ -14,6 +14,7 @@ import (
 	"go_rest_api/handlers/vote/IssueController"
 	"go_rest_api/handlers/vote/PemilihController"
 	"go_rest_api/handlers/vote/PemiluController"
+	"go_rest_api/handlers/vote/RelawanController"
 	"go_rest_api/handlers/vote/SummaryController"
 	"go_rest_api/handlers/vote/TpsController"
 
@@ -107,6 +108,14 @@ func SetupRoutes(app *fiber.App) {
 	profile.Post("/", ProfileController.Create)
 	profile.Post("/delete/:id", ProfileController.Delete)
 	profile.Post("/:id", ProfileController.Update)
+
+	//relawan
+	relawan := v1.Group("/relawan")
+	relawan.Get("/", RelawanController.GetAll)
+	relawan.Get("/:id", RelawanController.GetById)
+	relawan.Post("/", RelawanController.Create)
+	relawan.Post("/delete/:id", RelawanController.Delete)
+	relawan.Post("/:id", RelawanController.Update)
 
 	//pemilih
 	pemilih := v1.Group("/pemilih")

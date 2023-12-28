@@ -58,7 +58,7 @@ func GetById(c *fiber.Ctx) error {
 // @Tags			Pemilih
 // @Accept			json
 // @Produce		json
-// @Param			issue	body	Pemilih.IssueRequest	true	"Pemilih Create"
+// @Param			issue	body	Pemilih.PemilihRequest	true	"Pemilih Create"
 // @Security		ApiKeyAuth
 // @Router			/api/v1/pemilih [post]
 func Create(c *fiber.Ctx) error {

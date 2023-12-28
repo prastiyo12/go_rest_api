@@ -18,7 +18,7 @@ import (
 //
 // @Security		ApiKeyAuth
 //
-// @Router			/api/v1/pemilu [get]
+// @Router			/api/v1/profile [get]
 func GetAll(c *fiber.Ctx) error {
 	data, err := Profile.GetAll(c)
 
